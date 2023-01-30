@@ -10,7 +10,7 @@ export class SignupPage implements OnInit {
 
   email!: string
   password!: string; 
-  name!: string;
+ name!: string;
 last_Name!: string;
 
 
@@ -49,5 +49,12 @@ console.log(error)
 
 console.log(cre)
   }
-
+ 
+  atras(){
+  
+    this.router.navigateByUrl('/signin')
+  
+     
+  
+  }
 }

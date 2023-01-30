@@ -11,16 +11,13 @@ export class SigninPage implements OnInit {
 
   email!: string
   password!: string; 
+  jwtSecret!: string;
 
 
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-  
-  
-  
-  
-  
+
   }
 
 
@@ -32,19 +29,28 @@ email: this.email,
 password: this.password,
 
     }
-
-
-    this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
-
-localStorage.setItem('User',JSON.stringify(res))
-this.router.navigateByUrl('/home-bloc')
+  this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
+  localStorage.setItem('User',JSON.stringify(res))
+  this.router.navigateByUrl('/home-note')
 
     },error =>{
 console.log(error)
-    })
-
-
+    });
 
 console.log(cre)
-  }
+
+
 }
+Registrar(){
+  
+  this.router.navigateByUrl('/signup')
+
+   
+
+}
+
+
+
+}
+
+
