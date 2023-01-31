@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -11,18 +12,14 @@ export class SignupPage implements OnInit {
 
   email!: string
   password!: string; 
-  name!: string;
+ name!: string;
 last_Name!: string;
 
 
-  constructor(private http: HttpClient, private router: Router,
-    private alertController: AlertController) { }
+constructor(private http: HttpClient, private router: Router,
+  private alertController: AlertController) { }
 
   ngOnInit() {
-  
-  
-  
-  
   
   }
 
@@ -44,10 +41,8 @@ localStorage.setItem('User',JSON.stringify(res))
 this.router.navigateByUrl('/home-bloc')
 
     },error =>{
-    console.log(error)
-    this.presentAlert('Registro fallido.', error.error.msg)
-
-
+console.log(error)
+this.presentAlert('Registro fallido.', error.error.msg)
 
     })
 
@@ -70,4 +65,12 @@ console.log(cre)
     console.log('onDidDismiss resolved with role', role);
   }
 
+ 
+  atras(){
+  
+    this.router.navigateByUrl('/signin')
+  
+     
+  
+  }
 }
