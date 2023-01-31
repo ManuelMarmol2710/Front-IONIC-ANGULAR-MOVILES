@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -8,5 +7,6 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
+  constructor() {}
 
 }

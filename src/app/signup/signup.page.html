@@ -1,29 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Sign Up</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-item>
-  <ion-label >Nombre</ion-label>
-  <ion-input [(ngModel)]="name" placeholder="Nombre"></ion-input>
+  <ion-label> Nombre </ion-label>
+  <ion-input [(ngModel)]="name" placeholder="nombre"></ion-input>
 </ion-item>
 <ion-item>
-  <ion-label>Apellido</ion-label>
-  <ion-input [(ngModel)]="last_Name" placeholder="Apellido"></ion-input>
+  <ion-label> Apellido </ion-label>
+  <ion-input [(ngModel)]="last_Name" placeholder="apellido"></ion-input>
 </ion-item>
 <ion-content>
   <ion-item>
-    <ion-label >Registrar</ion-label>
-    <ion-label >Email</ion-label>
-    <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+    <ion-label> Email </ion-label>
+    <ion-input [(ngModel)]="email" placeholder="ejemplo@gmail.com"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Contraseña</ion-label>
-    <ion-input [(ngModel)]="password" placeholder="Contraseña"></ion-input>
+    <ion-label> Contraseña </ion-label>
+    <ion-input [(ngModel)]="password" placeholder="contraseña"></ion-input>
   </ion-item>
 
-  <ion-button (click)="Registrar()" >Registrar</ion-button>
-  
-  <ion-button (click)="atras()" >Atras</ion-button>
+  <ion-button (click)="Registrar()"> Registrar </ion-button>
 </ion-content>

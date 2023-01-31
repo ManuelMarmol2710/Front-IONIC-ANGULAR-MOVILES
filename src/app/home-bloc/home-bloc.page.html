@@ -1,29 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>BLOC-Notas</ion-title>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-label> BIENVENIDO AL BLOC DE NOTAS</ion-label>
 <ion-content>
 
 
-  <ion-item>
-    <ion-label>Titulo</ion-label>
-    <ion-input [(ngModel)]="title" value="53703" [disabled]="false"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label >Collections</ion-label>
-    <ion-input  [(ngModel)]="collections" value="53703" [disabled]="false"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Nota</ion-label>
-    <ion-input  [(ngModel)]="notes" value="53703" [disabled]="false"></ion-input>
-  </ion-item>
-
-  <ion-button (click)="Save()" >Save   </ion-button>
-    
-    <ion-button (click)="atras()" >Atras</ion-button>
-  
+  <ion-button (click)="logout()" >LogOut
+  </ion-button>
 </ion-content>

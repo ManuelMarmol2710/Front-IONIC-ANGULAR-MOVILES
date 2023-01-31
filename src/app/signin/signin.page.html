@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>signin</ion-title>
+    <ion-title>Sign In</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,15 +10,17 @@
   <ion-item>
  
  
-    <ion-label >Email</ion-label>
-    <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+    <ion-label> Email </ion-label>
+    <ion-input [(ngModel)]="email" placeholder="ejemplo@gmail.com"></ion-input>
   </ion-item>
  
   <ion-item>
-    <ion-label>Contraseña</ion-label>
-    <ion-input [(ngModel)]="password" placeholder="Contraseña"></ion-input>
+    <ion-label> Contraseña </ion-label>
+    <ion-input [(ngModel)]="password" placeholder="contraseña"></ion-input>
   </ion-item>
-  
-  <ion-button (click)="login()" >Login</ion-button>
-  <ion-button (click)="Registrar()" >Registrarse</ion-button>
+
+  <ion-button (click)="login()" > Login </ion-button>
+
+  <p class="ion text-center"> No tienes una cuenta? <strong routerLink="/signup">Registrate</strong> </p>
+
 </ion-content>
