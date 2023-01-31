@@ -24,6 +24,14 @@ logout(){
    
 
 }
+
+edit(){
+  
+  this.router.navigateByUrl('/profile')
+
+   
+
+}
   ngOnInit() {
   }
 

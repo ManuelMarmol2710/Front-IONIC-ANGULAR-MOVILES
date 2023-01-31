@@ -14,8 +14,7 @@ export class HomeBlocPage implements OnInit {
   notes!: string;
       title!: string;
       collections!: string;
-     name:string | undefined;
-
+ 
 
   constructor(private http: HttpClient, private router: Router) { }
 

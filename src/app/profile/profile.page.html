@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item fill="solid">
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="name" [(ngModel)]="name"></ion-input>
+    <ion-note slot="helper">Actualizar Nombre</ion-note>
+
+  </ion-item>
+
+  <ion-item fill="solid">
+    <ion-label position="floating">Apellido</ion-label>
+    <ion-input type="last_Name"  [(ngModel)]="last_Name"></ion-input>
+    <ion-note slot="helper">Actualizar Apellido</ion-note>
+
+  </ion-item>
+
+  <ion-item fill="solid">
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="email"  [(ngModel)]="email"></ion-input>
+    <ion-note slot="helper">Actualizar Email</ion-note>
+
+  </ion-item>
+  
+  <ion-item fill="solid">
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="Contraseña" [(ngModel)]="password"></ion-input>
+    <ion-note slot="helper">Actualizar Email</ion-note>
+
+    
+  </ion-item>
+
+  <ion-item fill="solid">
+    <ion-label position="floating">Id</ion-label>
+    <ion-input type="Contraseña" [(ngModel)]="id"></ion-input>
+    <ion-note slot="helper">Token</ion-note>
+
+    
+  </ion-item>
+  <ion-button (click)="Actu()" >Actualizar</ion-button>
+  
+  <ion-button (click)="atras()" >Atras</ion-button>
+</ion-content>
