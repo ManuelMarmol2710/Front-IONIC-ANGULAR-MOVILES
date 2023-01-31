@@ -12,14 +12,14 @@ export class SigninPage implements OnInit {
 
   email!: string
   password!: string; 
+  jwtSecret!: string;
+id!:string;
 
-
-  constructor(private http: HttpClient, private router: Router,
-    private alertController: AlertController) { }
+constructor(private http: HttpClient, private router: Router,
+  private alertController: AlertController) { }
 
   ngOnInit() {
-  
-  
+
   }
 
 
@@ -27,43 +27,50 @@ export class SigninPage implements OnInit {
 
     let cre = {
 
-      email: this.email,
-      password: this.password,
+email: this.email,
+password: this.password,
 
     }
+  this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
+  localStorage.setItem('User',JSON.stringify(res))
+  this.router.navigateByUrl('/home-note')
+  
 
-
-          this.http.post('http://localhost:3000/signin', cre)
-          .subscribe(res =>{
-          localStorage.setItem('User',JSON.stringify(res))
-          this.router.navigateByUrl('/home-bloc')
 
     },error =>{
-
-        console.log(error)
-        this.presentAlert('Inicio de sesion fallido.', error.error.msg)
-      
-    })
-
-
-
-console.log(cre)
-  }
-
-  async presentAlert(header:string, message:string) {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header:header,
-      message:message,
-      buttons: ['OK'],
+console.log(error)
+this.presentAlert('Inicio de sesion fallido.', error.error.msg)
     });
 
-    await alert.present();
+console.log(cre)
 
-    const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
-  }
+
+}
+
+async presentAlert(header:string, message:string) {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header:header,
+    message:message,
+    buttons: ['OK'],
+  });
+
+  await alert.present();
+
+  const { role } = await alert.onDidDismiss();
+  console.log('onDidDismiss resolved with role', role);
+}
+
+Registrar(){
+  
+  this.router.navigateByUrl('/signup')
+
+   
+
+}
 
 
 
 }
+
+

@@ -23,6 +23,14 @@ const routes: Routes = [
     path: 'home-bloc',
     loadChildren: () => import('./home-bloc/home-bloc.module').then( m => m.HomeBlocPageModule)
   },
+  {
+    path: 'home-note',
+    loadChildren: () => import('./home-note/home-note.module').then( m => m.HomeNotePageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
 
 ];
 

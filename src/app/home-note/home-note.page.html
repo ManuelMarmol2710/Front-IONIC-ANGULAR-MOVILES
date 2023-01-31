@@ -1,16 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>HOMENOTE</ion-title>
+    <ion-title>Menu</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
     <ion-button (click)="buscar()" >Buscar</ion-button>
-    <ion-input placeholder="Buscar Nota"  [(ngModel)]="title" ></ion-input>
+    <ion-input placeholder=""  [(ngModel)]="title" ></ion-input>
   </ion-item>
   {{res}}
-  <ion-button (click)="newNote()" >NuevaNota</ion-button>
-  <ion-button (click)="logout()" >LogOut</ion-button>
-  <ion-button (click)="edit()" > EditarPerfil</ion-button>
+  <ion-button (click)="newNote()" >Nueva nota</ion-button>
+  <ion-button (click)="logout()" >Cerrar sesion</ion-button>
+  <ion-button (click)="edit()" > Editar perfil</ion-button>
 </ion-content>
