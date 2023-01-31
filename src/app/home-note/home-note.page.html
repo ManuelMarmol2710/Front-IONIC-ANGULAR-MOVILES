@@ -5,6 +5,11 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-button (click)="buscar()" >Buscar</ion-button>
+    <ion-input placeholder="Buscar Nota"  [(ngModel)]="title" ></ion-input>
+  </ion-item>
+  {{res}}
   <ion-button (click)="newNote()" >NuevaNota</ion-button>
   <ion-button (click)="logout()" >LogOut</ion-button>
   <ion-button (click)="edit()" > EditarPerfil</ion-button>

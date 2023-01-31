@@ -56,4 +56,25 @@ console.log(cre)
      
   
   }
-}
+
+
+  delete(){
+
+    this.http.delete(( `http://localhost:3000/signup/${(this.id)} `),).subscribe(res =>{
+
+    localStorage.setItem('blocNotes',JSON.stringify(res))
+    this.router.navigateByUrl('/signin')
+    
+        },error =>{
+    console.log(error)
+        })
+
+
+
+  }
+ 
+
+  }
+
+
+

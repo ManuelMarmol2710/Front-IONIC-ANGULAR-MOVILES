@@ -12,7 +12,7 @@ export class SigninPage implements OnInit {
   email!: string
   password!: string; 
   jwtSecret!: string;
-
+id!:string;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -32,6 +32,8 @@ password: this.password,
   this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
   localStorage.setItem('User',JSON.stringify(res))
   this.router.navigateByUrl('/home-note')
+  
+
 
     },error =>{
 console.log(error)
