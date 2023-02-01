@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Eliminar Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item fill="solid">
+    <ion-label position="floating">Escriba su correo para eliminar su Usuario</ion-label>
+    <ion-input type="Contraseña" [(ngModel)]="email"></ion-input>
+    <ion-note slot="helper"></ion-note>
+
+    
+  </ion-item>
+  <ion-button (click)="atras()" >Atras</ion-button>
+  
+  <ion-button (click)="delete()" >Borrar Usuario</ion-button>
+</ion-content>
