@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Profile</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -41,10 +41,17 @@
 
     
   </ion-item>
+
+  <ion-list style="text-align:center">
+
   <ion-button (click)="Actu()" >Actualizar</ion-button>
   
-  <ion-button (click)="atras()" >Atras</ion-button>
+  <ion-button (click)="atras()" >Volver</ion-button>
   
-  <ion-button (click)="delete()" >Borrar Usuario</ion-button>
+  <ion-button color="danger" (click)="delete()" >Borrar Usuario</ion-button>
+
+  </ion-list>
+
+
 
 </ion-content>

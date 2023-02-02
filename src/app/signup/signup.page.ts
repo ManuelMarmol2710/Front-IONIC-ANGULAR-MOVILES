@@ -38,7 +38,7 @@ last_Name: this.last_Name
     this.http.post('http://localhost:3000/signup',cre).subscribe(res =>{
 
 localStorage.setItem('User',JSON.stringify(res))
-this.router.navigateByUrl('/home-bloc')
+this.router.navigateByUrl('/home-note')
 
     },error =>{
 console.log(error)

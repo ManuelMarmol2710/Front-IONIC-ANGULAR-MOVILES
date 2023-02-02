@@ -10,7 +10,13 @@
     <ion-input placeholder=""  [(ngModel)]="title" ></ion-input>
   </ion-item>
   {{res}}
-  <ion-button (click)="newNote()" >Nueva nota</ion-button>
-  <ion-button (click)="logout()" >Cerrar sesion</ion-button>
-  <ion-button (click)="edit()" > Editar perfil</ion-button>
+
+  <ion-list style="text-align:center">
+  
+    <ion-button (click)="newNote()" >Nueva nota</ion-button>
+    <ion-button (click)="logout()" >Cerrar sesion</ion-button>
+    <ion-button (click)="edit()" > Editar perfil</ion-button>
+    
+  </ion-list>
+  
 </ion-content>

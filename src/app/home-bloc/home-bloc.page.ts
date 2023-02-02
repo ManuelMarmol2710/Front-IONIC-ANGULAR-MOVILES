@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
-
-
+import { AlertController } from '@ionic/angular';
+import { NgModule } from '@angular/core';
 
 
 @Component({
@@ -14,11 +14,15 @@ export class HomeBlocPage implements OnInit {
   notes!: string;
       title!: string;
       collections!: string;
+
+   
  
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private alertController: AlertController) { }
+
 
   ngOnInit() {
+
 
   }
   
@@ -49,4 +53,6 @@ atras(){
    
 
 }
+
+
 }

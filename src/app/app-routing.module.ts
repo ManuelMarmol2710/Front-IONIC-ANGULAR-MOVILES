@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
+  {
+    path: 'deleteprofile',
+    loadChildren: () => import('./deleteprofile/deleteprofile.module').then( m => m.DeleteprofilePageModule)
+  },
 
 ];
 

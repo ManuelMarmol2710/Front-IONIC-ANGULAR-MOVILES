@@ -12,18 +12,21 @@
     <ion-input [(ngModel)]="title" value="53703" [disabled]="false"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label >Collections</ion-label>
-    <ion-input  [(ngModel)]="collections" value="53703" [disabled]="false"></ion-input>
-  </ion-item>
+
 
   <ion-item>
     <ion-label>Nota</ion-label>
     <ion-input  [(ngModel)]="notes" value="53703" [disabled]="false"></ion-input>
   </ion-item>
 
-  <ion-button (click)="Save()" >Save   </ion-button>
-    
-    <ion-button (click)="atras()" >Atras</ion-button>
+  <ion-list style="text-align:center">
   
-</ion-content>
+    <ion-button (click)="Save()">Guardar</ion-button>
+    
+    <ion-button (click)="atras()">Volver</ion-button>
+  
+  </ion-list>
+
+  </ion-content>
+  
+

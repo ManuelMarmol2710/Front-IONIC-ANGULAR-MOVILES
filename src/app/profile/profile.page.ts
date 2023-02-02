@@ -48,7 +48,6 @@ last_Name: this.last_Name
 
 console.log(cre)
   }
- 
   atras(){
   
     this.router.navigateByUrl('/home-note')
@@ -56,23 +55,10 @@ console.log(cre)
      
   
   }
+ delete(){
+  this.router.navigateByUrl('/deleteprofile')
 
-
-  delete(){
-
-    this.http.delete(( `http://localhost:3000/signup/${(this.id)} `),).subscribe(res =>{
-
-    localStorage.setItem('blocNotes',JSON.stringify(res))
-    this.router.navigateByUrl('/signin')
-    
-        },error =>{
-    console.log(error)
-        })
-
-
-
-  }
- 
+ }
 
   }
 
