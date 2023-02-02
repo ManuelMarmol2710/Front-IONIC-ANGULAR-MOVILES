@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Eliminar Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item fill="solid">
+    <ion-label position="floating">Escriba su contraseña</ion-label>
+    <ion-input type="Contraseña" [(ngModel)]="password"></ion-input>
+    <ion-note slot="helper"></ion-note>
+
+    
+  </ion-item>
+
+  <ion-list style="text-align:center">
+
+    <ion-button (click)="atras()" >Volver</ion-button>
+  
+    <ion-button color="danger" (click)="delete()" >Borrar Usuario</ion-button>
+
+
+  </ion-list>
+ 
+</ion-content>
