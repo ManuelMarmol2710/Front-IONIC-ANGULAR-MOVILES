@@ -12,8 +12,7 @@ export class SigninPage implements OnInit {
 
   email!: string
   password!: string; 
-  jwtSecret!: string;
-id!:string;
+ 
 
 constructor(private http: HttpClient, private router: Router,
   private alertController: AlertController) { }
@@ -31,7 +30,7 @@ email: this.email,
 password: this.password,
 
     }
-  this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
+ this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
   localStorage.setItem('User',JSON.stringify(res))
   this.router.navigateByUrl('/home-note')
   
@@ -42,7 +41,7 @@ console.log(error)
 this.presentAlert('Inicio de sesion fallido.', error.error.msg)
     });
 
-console.log(cre)
+
 
 
 }

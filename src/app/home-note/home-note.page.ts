@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import mongoose from 'mongoose';
 
 @Component({
   selector: 'app-home-note',
@@ -11,13 +12,26 @@ import { AlertController } from '@ionic/angular';
 export class HomeNotePage implements OnInit {
 title!:string;
 res!: string;
+owner!: string;
+
 constructor(private http: HttpClient, private router: Router,
   private alertController: AlertController) { }
   newNote(){
   
   this.router.navigateByUrl('/home-bloc')
 
-   
+  this.http.get(( `http://localhost:3000/note/${(this.owner)}`)).subscribe(res =>{
+
+  localStorage.setItem('blocNotes',JSON.stringify(res))
+  console.log(res)
+
+  
+      },error =>{
+
+  console.log(error)
+
+      })
+
 
 }
 
@@ -42,8 +56,8 @@ edit(){
  buscar(){
 
 
-if(this.title !==  this.res){
-  this.http.get((   `http://localhost:3000/homeblocT/${(this.title)}`)).subscribe(res =>{
+
+  this.http.get((   `http://localhost:3000/noteT/${(this.title)}`)).subscribe(res =>{
 
     localStorage.setItem('blocNotes',JSON.stringify(res))
     console.log(res)
@@ -52,32 +66,31 @@ if(this.title !==  this.res){
         },error =>{
 
     console.log(error)
-
+    this.presentAlert('Titulo no encontrado.', error.error.msg)
         })
 
 
-
-        this.http.get((   `http://localhost:3000/homeblocC/${(this.title)} `)).subscribe(res =>{
-
+      }
+      
+      delete(){
+        this.http.delete((   `http://localhost:3000/note/${(this.title)}`)).subscribe(res =>{
+  
         localStorage.setItem('blocNotes',JSON.stringify(res))
         console.log(res)
-        
+    
         
             },error =>{
-
+    
         console.log(error)
-            })
-     
-           
-      } else if(this.title !==  this.res){
-console.log('no existe')
-      } 
-      
-      else {
-        console.log('Coloque informacion')
-      }
+        this.presentAlert('Titulo no encontrado.', error.error.msg)
+            })  
 
     }
+
+    
+
+
+    
 
     async presentAlert(header:string, message:string) {
       const alert = await this.alertController.create({

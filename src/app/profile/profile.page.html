@@ -34,21 +34,15 @@
     
   </ion-item>
 
-  <ion-item fill="solid">
-    <ion-label position="floating">Id</ion-label>
-    <ion-input type="Contraseña" [(ngModel)]="id"></ion-input>
-    <ion-note slot="helper">Token</ion-note>
 
-    
-  </ion-item>
 
   <ion-list style="text-align:center">
-
+    <ion-button (click)="atras()" >Volver</ion-button>
+  
   <ion-button (click)="Actu()" >Actualizar</ion-button>
   
-  <ion-button (click)="atras()" >Volver</ion-button>
-  
-  <ion-button color="danger" (click)="delete()" >Borrar Usuario</ion-button>
+
+<ion-button color="danger" (click)="delete()" >Borrar Usuario</ion-button>
 
   </ion-list>
 

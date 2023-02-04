@@ -6,7 +6,7 @@ import { AlertController } from '@ionic/angular';
 
 const routes: Routes = [
   {
-    path: '',
+    path: '/home-note/:owner',
     component: HomeBlocPage
   }
 ];

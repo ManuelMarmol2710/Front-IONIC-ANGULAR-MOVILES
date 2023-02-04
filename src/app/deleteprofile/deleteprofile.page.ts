@@ -9,7 +9,8 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./deleteprofile.page.scss'],
 })
 export class DeleteprofilePage implements OnInit {
-password!: string;
+email!: string;
+
   constructor(private http: HttpClient, private router: Router, private alertController: AlertController) { }
 
   ngOnInit() {
@@ -25,9 +26,9 @@ password!: string;
 
   delete(){
 
-if(this.password){
 
-  this.http.delete(( `http://localhost:3000/signup/${(this.password)} `),).subscribe(res =>{
+
+  this.http.delete(( `http://localhost:3000/signup/${(this.email)} `),).subscribe(res =>{
 
   localStorage.setItem('blocNotes',JSON.stringify(res))
   this.router.navigateByUrl('/signin')
@@ -36,10 +37,7 @@ if(this.password){
   console.log(error)
       })
 
-} else {
-  
-      alert('El usuario se ha eliminado incorrectamente.')
-}
+
     
 
 

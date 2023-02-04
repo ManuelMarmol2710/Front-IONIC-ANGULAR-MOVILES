@@ -12,7 +12,8 @@ export class ProfilePage implements OnInit {
   password!: string; 
  name!: string;
 last_Name!: string;
-id!: string ;
+
+
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -36,14 +37,16 @@ last_Name: this.last_Name
     
 }
     
-    this.http.put((   `http://localhost:3000/signup/${(this.id)} `),cre).subscribe(res =>{
+    this.http.put((`http://localhost:3000/signup/${(this.email)} `),cre).subscribe(res =>{
 
     localStorage.setItem('blocNotes',JSON.stringify(res))
     this.router.navigateByUrl('/home-note')
     
         },error =>{
     console.log(error)
-        })
+       
+  
+  })
 
 
 console.log(cre)
@@ -57,7 +60,7 @@ console.log(cre)
   }
  delete(){
   this.router.navigateByUrl('/deleteprofile')
-
+ 
  }
 
   }

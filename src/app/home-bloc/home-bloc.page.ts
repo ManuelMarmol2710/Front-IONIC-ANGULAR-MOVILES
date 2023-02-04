@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 export class HomeBlocPage implements OnInit {
   notes!: string;
       title!: string;
-      collections!: string;
+      owner!: string;
 
    
  
@@ -31,13 +31,13 @@ export class HomeBlocPage implements OnInit {
 
       notes: this.notes,
       title: this.title,
-      collections: this.collections,
+     owner: this.owner
 
 
           }
           
           
-          this.http.post('http://localhost:3000/homebloc',cre).subscribe(res =>{
+          this.http.post('http://localhost:3000/note/:email',cre).subscribe(res =>{
 
 localStorage.setItem('User',JSON.stringify(res))
 this.router.navigateByUrl('/home-note')
