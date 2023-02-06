@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import mongoose from 'mongoose';
-
+import { SigninPage } from '../signin/signin.page';
 @Component({
   selector: 'app-home-note',
   templateUrl: './home-note.page.html',
@@ -14,13 +14,16 @@ title!:string;
 res!: string;
 owner!: string;
 
+
 constructor(private http: HttpClient, private router: Router,
+
+
   private alertController: AlertController) { }
   newNote(){
   
-  this.router.navigateByUrl('/home-bloc')
+  //this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
 
-  this.http.get(( `http://localhost:3000/note/${(this.owner)}`)).subscribe(res =>{
+  /*this.http.get(( `http://localhost:3000/note/${(this.owner)}`)).subscribe(res =>{
 
   localStorage.setItem('blocNotes',JSON.stringify(res))
   console.log(res)
@@ -31,7 +34,10 @@ constructor(private http: HttpClient, private router: Router,
   console.log(error)
 
       })
+    */
 
+    this.router.navigateByUrl('/home-bloc')
+        
 
 }
 

@@ -10,8 +10,9 @@ import { AlertController } from '@ionic/angular';
 export class SigninPage implements OnInit {
 
 
-  email!: string
+   public static email: string
   password!: string; 
+  email!: string
  
 
 constructor(private http: HttpClient, private router: Router,
@@ -26,15 +27,15 @@ constructor(private http: HttpClient, private router: Router,
 
     let cre = {
 
-email: this.email,
+email1: SigninPage.email,
 password: this.password,
-
+email: this.email
     }
  this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
   localStorage.setItem('User',JSON.stringify(res))
-  this.router.navigateByUrl('/home-note')
+  //this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
   
-
+  this.router.navigateByUrl(`home-note`)
 
     },error =>{
 console.log(error)

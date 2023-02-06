@@ -48,7 +48,7 @@ console.log(error)
 }
 atras(){
   
-  this.router.navigateByUrl('/home-note')
+  this.router.navigateByUrl('/home-note/:owner')
 
    
 
