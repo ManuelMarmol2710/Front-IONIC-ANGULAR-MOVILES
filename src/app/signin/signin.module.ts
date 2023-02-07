@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SigninPageRoutingModule } from './signin-routing.module';
 
-import { SigninPage } from './signin.page';
+import {  SigninPage } from './signin.page'
 
 @NgModule({
   imports: [

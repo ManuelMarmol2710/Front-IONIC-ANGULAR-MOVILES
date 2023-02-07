@@ -2,40 +2,53 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.page.html',
   styleUrls: ['./signin.page.scss'],
+
+
 })
-export class SigninPage implements OnInit {
+
+export class SigninPage  implements OnInit  {
+  password!: string;
 
 
-   public static email: string
-  password!: string; 
-  email!: string
+  passwordType:string = 'password';
+  passwordIcon: string = 'eye-off';
+
+  email!:string;
+  static email: string;
+ 
  
 
 constructor(private http: HttpClient, private router: Router,
   private alertController: AlertController) { }
+ngOnInit() {
+  
 
-  ngOnInit() {
+}
 
-  }
+hideShowPassword(){
+
+  this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+  this.passwordIcon = this.passwordIcon === 'eye=off' ? 'eye' : 'eye-off';
 
 
-  login(){
+}
+
+login(){
 
     let cre = {
 
-email1: SigninPage.email,
+email: SigninPage.email,
 password: this.password,
-email: this.email
+        
     }
- this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
-  localStorage.setItem('User',JSON.stringify(res))
-  //this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
-  
-  this.router.navigateByUrl(`home-note`)
+    this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
+  localStorage.setItem('email',JSON.stringify(res))
+ this.router.navigateByUrl((`home-note/${(SigninPage.email)}`))
 
     },error =>{
 console.log(error)
@@ -72,5 +85,4 @@ Registrar(){
 
 
 }
-
-
+export default SigninPage  ;

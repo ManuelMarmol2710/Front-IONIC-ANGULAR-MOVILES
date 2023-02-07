@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NgModule } from '@angular/core';
-
+import   {SigninPage}   from '../signin/signin.page';
 
 @Component({
   selector: 'app-home-bloc',
@@ -31,24 +31,27 @@ export class HomeBlocPage implements OnInit {
 
       notes: this.notes,
       title: this.title,
-     owner: this.owner
+
 
 
           }
+         
           
           
-          this.http.post('http://localhost:3000/note/:email',cre).subscribe(res =>{
+          this.http.post(`http://localhost:3000/note/${(SigninPage.email)}`,cre).subscribe(res =>{
 
 localStorage.setItem('User',JSON.stringify(res))
-this.router.navigateByUrl('/home-note')
+this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
 
     },error =>{
 console.log(error)
     })
+
+    
 }
 atras(){
   
-  this.router.navigateByUrl('/home-note/:owner')
+  this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
 
    
 

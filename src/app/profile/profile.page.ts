@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
+import SigninPage from '../signin/signin.page';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -53,7 +54,7 @@ console.log(cre)
   }
   atras(){
   
-    this.router.navigateByUrl('/home-note')
+    this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
   
      
   

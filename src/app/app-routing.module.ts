@@ -35,6 +35,14 @@ const routes: Routes = [
     path: 'deleteprofile',
     loadChildren: () => import('./deleteprofile/deleteprofile.module').then( m => m.DeleteprofilePageModule)
   },
+  {
+    path: 'ver-notas',
+    loadChildren: () => import('./ver-notas/ver-notas.module').then( m => m.VerNotasPageModule)
+  },
+  {
+    path: 'ver-collections',
+    loadChildren: () => import('./ver-collections/ver-collections.module').then( m => m.VerCollectionsPageModule)
+  },
 
 ];
 

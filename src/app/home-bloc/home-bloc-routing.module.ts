@@ -5,7 +5,7 @@ import { HomeBlocPage } from './home-bloc.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':owner',
     component: HomeBlocPage
   }
 ];
