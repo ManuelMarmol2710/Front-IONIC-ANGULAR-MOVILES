@@ -46,27 +46,28 @@ email: this.email,
 password: this.password,
         
     }
+    let navigation: NavigationExtras = {
+
+      queryParams:{
+      
+        email: this.email
+      
+      
+      }
+      
+      }
+      
+     
     this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
   localStorage.setItem('email',JSON.stringify(res))
-
+  this.router.navigate(['home-note'],navigation)
     },error =>{
 console.log(error)
 this.presentAlert('Inicio de sesion fallido.', error.error.msg)
     });
 
-let navigation: NavigationExtras = {
-
-queryParams:{
-
-  email: this.email
 
 
-}
-
-}
-
-this.router.navigate(['home-note'],navigation)
-//this.router.navigate(['home-bloc'],navigation)
 
 
 

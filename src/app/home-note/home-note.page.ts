@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router,NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import mongoose from 'mongoose';
 
 @Component({
   selector: 'app-home-note',
@@ -11,12 +10,15 @@ import mongoose from 'mongoose';
 })
 export class HomeNotePage implements OnInit {
 
-
-  title!:string;
-res!: string;
+  nota = {
 
 
-data: any;
+
+  };
+
+      title!:string;
+      res!: string;
+      data: any;
   
 
 constructor(private http: HttpClient, private router: Router,
@@ -48,6 +50,20 @@ this.data = params['email']
   
    
   }
+
+  openDetailsWithQueryParams() {
+    let navigation: NavigationExtras = {
+
+      queryParams:{
+      
+        email: this.data,
+      
+      
+      }
+
+}
+this.router.navigate(['ver-notas'],navigation)
+  }
   
 verCollect(){
   let navigation: NavigationExtras = {
@@ -71,24 +87,7 @@ this.router.navigate(['ver-collections'],navigation)
 
 }
 
-  verNotas(){
-    let navigation: NavigationExtras = {
-
-      queryParams:{
-      
-        email: this.data,
-      
-      
-      }
-
-
-        
-
-}
-
-this.router.navigate(['ver-notas'],navigation)
   
-  }
 
 
   newNote(){

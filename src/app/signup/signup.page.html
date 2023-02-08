@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="atras()"></ion-back-button>
+    </ion-buttons>
     <ion-title>Registrarse</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -26,7 +29,7 @@
   
     <ion-button (click)="Registrar()" >Registrar</ion-button>
   
-    <ion-button (click)="atras()" >Volver</ion-button>
+
     
   </ion-list>
 
