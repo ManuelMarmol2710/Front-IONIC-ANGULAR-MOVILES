@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -12,14 +12,14 @@ import { AlertController } from '@ionic/angular';
 })
 
 export class SigninPage  implements OnInit  {
+  
+  email!:string;
   password!: string;
 
 
   passwordType:string = 'password';
   passwordIcon: string = 'eye-off';
-
-  email!:string;
-  static email: string;
+ 
  
  
 
@@ -42,19 +42,31 @@ login(){
 
     let cre = {
 
-email: SigninPage.email,
+email: this.email,
 password: this.password,
         
     }
     this.http.post('http://localhost:3000/signin',cre).subscribe(res =>{
   localStorage.setItem('email',JSON.stringify(res))
- this.router.navigateByUrl((`home-note/${(SigninPage.email)}`))
 
     },error =>{
 console.log(error)
 this.presentAlert('Inicio de sesion fallido.', error.error.msg)
     });
 
+let navigation: NavigationExtras = {
+
+queryParams:{
+
+  email: this.email
+
+
+}
+
+}
+
+this.router.navigate(['home-note'],navigation)
+//this.router.navigate(['home-bloc'],navigation)
 
 
 

@@ -5,7 +5,7 @@ import { HomeNotePage } from './home-note.page';
 
 const routes: Routes = [
   {
-    path: ':owner',
+    path: '',
     component: HomeNotePage
   }
 ];

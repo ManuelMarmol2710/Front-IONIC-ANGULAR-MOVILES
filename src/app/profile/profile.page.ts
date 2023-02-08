@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Route, Router } from '@angular/router';
-import SigninPage from '../signin/signin.page';
+import { Route, Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -14,9 +14,24 @@ export class ProfilePage implements OnInit {
  name!: string;
 last_Name!: string;
 
+data!:any;
+
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { 
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+    this.route.queryParams.subscribe(params =>{
+
+      console.log('params ', params)
+      
+      if(params && params['email']){
+      
+      this.data = params['email']
+        
+      }
+      
+      });
+    
+  }
 
   ngOnInit() {
   
@@ -54,7 +69,21 @@ console.log(cre)
   }
   atras(){
   
-    this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
+    let navigation: NavigationExtras = {
+
+      queryParams:{
+      
+        email: this.data,
+      
+      
+      }
+
+
+        
+
+}
+
+this.router.navigate(['home-note'],navigation)
   
      
   

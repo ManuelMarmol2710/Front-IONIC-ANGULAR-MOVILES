@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router,NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import mongoose from 'mongoose';
-import   SigninPage   from '../signin/signin.page';
 
 @Component({
   selector: 'app-home-note',
@@ -17,11 +16,33 @@ export class HomeNotePage implements OnInit {
 res!: string;
 
 
+data: any;
+  
 
 constructor(private http: HttpClient, private router: Router,
 
 
-  private alertController: AlertController) { }
+  private alertController: AlertController, private route:ActivatedRoute) {
+
+
+
+this.route.queryParams.subscribe(params =>{
+
+console.log('params ', params)
+
+if(params && params['email']){
+
+this.data = params['email']
+  
+}
+
+});
+
+
+
+
+
+   }
   
   ngOnInit() {
   
@@ -29,28 +50,64 @@ constructor(private http: HttpClient, private router: Router,
   }
   
 verCollect(){
+  let navigation: NavigationExtras = {
 
-  this.router.navigateByUrl((`ver-collections/${(SigninPage.email)}`))
+    queryParams:{
+    
+      email: this.data,
+    
+    
+    }
+
+
+      
+
+}
+
+this.router.navigate(['ver-collections'],navigation)
+
 
 
 
 }
 
   verNotas(){
+    let navigation: NavigationExtras = {
 
-    this.router.navigateByUrl((`ver-notas/${(SigninPage.email)}`))
+      queryParams:{
+      
+        email: this.data,
+      
+      
+      }
 
-  }
 
-
-  newNote(){
-  
-
-    this.router.navigateByUrl((`home-bloc/${(SigninPage.email)}`))
         
 
 }
 
+this.router.navigate(['ver-notas'],navigation)
+  
+  }
+
+
+  newNote(){
+    let navigation: NavigationExtras = {
+
+      queryParams:{
+      
+        email: this.data,
+      
+      
+      }
+
+
+        
+
+}
+
+this.router.navigate(['home-bloc'],navigation)
+}
 logout(){
   
   this.router.navigateByUrl('/signin')
@@ -60,8 +117,21 @@ logout(){
 }
 
 edit(){
-  
-  this.router.navigateByUrl('/profile')
+  let navigation: NavigationExtras = {
+
+    queryParams:{
+    
+      email: this.data,
+    
+    
+    }
+
+
+      
+
+}
+
+this.router.navigate(['profile'],navigation)
   
    
 
@@ -72,7 +142,7 @@ edit(){
 
 
 
-  this.http.get(( `http://localhost:3000/note/${(this.title)}`)).subscribe(res =>{
+  this.http.get(( `http://localhost:3000/note/${(this.data)}`)).subscribe(res =>{
 
     localStorage.setItem('blocNotes',JSON.stringify(res))
     console.log(res)

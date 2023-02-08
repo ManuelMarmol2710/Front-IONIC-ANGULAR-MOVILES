@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import SigninPage from '../signin/signin.page';
 @Component({
   selector: 'app-ver-collections',
@@ -8,13 +8,44 @@ import SigninPage from '../signin/signin.page';
 })
 export class VerCollectionsPage implements OnInit {
 
-  constructor(private router: Router) { }
+
+  data:any;
+  constructor(private router: Router, private route: ActivatedRoute) { 
+
+
+    this.route.queryParams.subscribe(params =>{
+
+      console.log('params ', params)
+      
+      if(params && params['email']){
+      
+      this.data = params['email']
+        
+      }
+      
+      });
+
+  }
 
   ngOnInit() {
   }
   atras(){
-  
-    this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
+    let navigation: NavigationExtras = {
+
+      queryParams:{
+      
+        email: this.data,
+      
+      
+      }
+
+
+        
+
+}
+
+this.router.navigate(['home-note'],navigation)
+    
   
      
   

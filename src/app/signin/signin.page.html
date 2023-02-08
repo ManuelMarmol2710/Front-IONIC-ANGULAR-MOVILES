@@ -14,7 +14,9 @@
  
   <ion-item>
     <ion-label floating>Contraseña</ion-label>
+ 
     <ion-input clearOnEdit="false" [type]="passwordType" [(ngModel)]="password" placeholder="contraseña"></ion-input>
+ 
     <ion-icon slot="end" [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
   </ion-item>
 

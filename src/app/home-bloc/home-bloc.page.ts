@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import   {SigninPage}   from '../signin/signin.page';
@@ -14,12 +14,40 @@ export class HomeBlocPage implements OnInit {
   notes!: string;
       title!: string;
       owner!: string;
-
+data!:any;
    
  
 
-  constructor(private http: HttpClient, private router: Router, private alertController: AlertController) { }
+  constructor(private http: HttpClient, private router: Router, private alertController: AlertController
+    ,private route:ActivatedRoute) { 
+      
+      this.route.queryParams.subscribe(params =>{
+ 
+      console.log('params ', params)
+      
+   
+      if(params && params['email']){
+      
+      this.data = params['email']
+        
+      }
+      
+     
+    
+    
+    
+    }); 
 
+  
+              
+               
+            
+  
+    
+    }
+
+ 
+    
 
   ngOnInit() {
 
@@ -35,27 +63,47 @@ export class HomeBlocPage implements OnInit {
 
 
           }
-         
-          
-          
-          this.http.post(`http://localhost:3000/note/${(SigninPage.email)}`,cre).subscribe(res =>{
 
-localStorage.setItem('User',JSON.stringify(res))
-this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
+          let navigation: NavigationExtras = {
 
-    },error =>{
-console.log(error)
-    })
+            queryParams:{
+            
+              email: this.data
+            
+            
+            }
+            
+            }        
+          this.http.post(`http://localhost:3000/note/${(this.data)}`,cre).subscribe(res =>{
+            
+            
+          localStorage.setItem('User',JSON.stringify(res))
+          
+          this.router.navigate(['home-note'],navigation)
+          
+              },error =>{
+            
+          console.log(error)
+              })
+          
 
     
 }
 atras(){
-  
-  this.router.navigateByUrl(`home-note/${(SigninPage.email)}`)
+  let navigation: NavigationExtras = {
+
+    queryParams:{
+    
+      email: this.data
+    
+    
+    }
+
 
    
 
 }
+this.router.navigate(['home-note'],navigation)
 
-
+}
 }

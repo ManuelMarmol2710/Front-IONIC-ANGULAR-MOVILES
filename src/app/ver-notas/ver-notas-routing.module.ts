@@ -5,7 +5,7 @@ import { VerNotasPage } from './ver-notas.page';
 
 const routes: Routes = [
   {
-    path: ':owner',
+    path: '',
     component: VerNotasPage
   }
 ];

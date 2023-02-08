@@ -5,7 +5,7 @@ import { VerCollectionsPage } from './ver-collections.page';
 
 const routes: Routes = [
   {
-    path: ':owner',
+    path: '',
     component: VerCollectionsPage
   }
 ];
