@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute,NavigationExtras } from '@angular/router';
-import SigninPage from '../signin/signin.page';
 
+import { HttpClient } from '@angular/common/http';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-ver-notas',
   templateUrl: './ver-notas.page.html',
@@ -9,26 +10,71 @@ import SigninPage from '../signin/signin.page';
 })
 export class VerNotasPage implements OnInit {
 
-
 data: any;
+data1: any;
+res1: any;
 
-  constructor(private router: Router, private route: ActivatedRoute) { 
-
-
-    this.route.queryParams.subscribe(params =>{
-
-      console.log('params ', params)
+  constructor(private router: Router, private route: ActivatedRoute,private alertController: AlertController,
+    private http: HttpClient, ) { 
       
-      if(params && params['email']){
-      
-      this.data = params['email']
+      this.route.queryParams.subscribe(params =>{
+
+        console.log('params ', params)
         
-      }
-      
-      }); }
+        if(params && params.notes && params.title){
+        
+        this.data1 = params.notes && params.title
+          
+        }
+        
+        });
+
+   
+      this.route.queryParams.subscribe(params =>{
+
+        console.log('params ', params)
+        
+        if(params && params['email']){
+        
+        this.data = params['email']
+          
+        }
+        
+        });
+    
+    
+    }
 
   ngOnInit() {
   }
+
+
+  mostrar(){
+ 
+    this.http.get(( `http://localhost:3000/note/${(this.data)}`)).subscribe(res =>{
+
+    localStorage.setItem('blocNotes',JSON.stringify(res))
+    console.log(res)
+    
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        res1: JSON.stringify(this.res1),
+      }
+      }
+    
+    
+this.router.navigate(['ver-notas'],navigationExtras)
+    
+    },error =>{
+
+    console.log(error)
+    this.presentAlert('Titulo no encontrado.', error.error.msg)
+        })
+
+
+      }
+    
+  
 
   atras(){
   
@@ -41,20 +87,25 @@ data: any;
       
       }
 
-
-        
-
 }
 
 this.router.navigate(['home-note'],navigation)
     
-  
-     
-  
   }
   
-     
-  
+  async presentAlert(header:string, message:string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header:header,
+      message:message,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
+}
 
 

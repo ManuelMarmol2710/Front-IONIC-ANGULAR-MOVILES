@@ -11,10 +11,13 @@ import   {SigninPage}   from '../signin/signin.page';
   styleUrls: ['./home-bloc.page.scss'],
 })
 export class HomeBlocPage implements OnInit {
-  notes!: string;
+
+ 
+      notes!: string;
       title!: string;
       owner!: string;
-data!:any;
+      data:any;
+     
    
  
 
@@ -25,28 +28,17 @@ data!:any;
  
       console.log('params ', params)
       
-   
       if(params && params['email']){
       
       this.data = params['email']
         
       }
-      
-     
     
-    
-    
-    }); 
+      }); 
 
-  
-              
-               
-            
-  
-    
     }
 
- 
+   
     
 
   ngOnInit() {
@@ -63,6 +55,24 @@ data!:any;
 
 
           }
+          let navigationExtras: NavigationExtras = {
+            queryParams: {
+              notes: JSON.stringify(this.notes),
+              title: JSON.stringify(this.title)
+            }
+          };
+        
+
+         /*/ let naviParamsNotes: NavigationExtras = {
+            queryParams:{
+            
+              notes: this.data1,
+              title:this.data2
+            
+            }
+          }
+*/
+          
 
           let navigation: NavigationExtras = {
 
@@ -79,16 +89,17 @@ data!:any;
             
           localStorage.setItem('User',JSON.stringify(res))
           
-          this.router.navigate(['home-note'],navigation)
+          this.router.navigate(['ver-notas'],navigationExtras)
+
           
               },error =>{
             
           console.log(error)
               })
           
-
-    
+             
 }
+
 atras(){
   let navigation: NavigationExtras = {
 
