@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="atras()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Configuracion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list style="text-align: center">
+    <ion-button (click)="edit()" color="medium"> Editar perfil</ion-button>
+    <br />
+    <br />
+    <ion-button color="danger" (click)="logout()">Cerrar sesion</ion-button>
+  </ion-list>
+</ion-content>

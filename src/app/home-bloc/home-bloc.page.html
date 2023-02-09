@@ -1,38 +1,29 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home-note"></ion-back-button>
+      <ion-back-button (click)="atras()"></ion-back-button>
     </ion-buttons>
     <ion-title>Nueva nota</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-
-
   <ion-item>
     <ion-label>Titulo</ion-label>
     <ion-input [(ngModel)]="title" value="53703" [disabled]="false"></ion-input>
   </ion-item>
 
-
-
   <ion-item>
-    <ion-label>Nota</ion-label>
-    <ion-input  [(ngModel)]="notes" value="53703" [disabled]="false"></ion-input>
+    <ion-input
+      [(ngModel)]="notes"
+      value="53703"
+      [disabled]="false"
+      placeholder="nota"
+    ></ion-input>
   </ion-item>
 
+  <br />
 
-
-  <ion-list style="text-align:center">
-  
+  <ion-list style="text-align: center">
     <ion-button (click)="Save()">Guardar</ion-button>
-    
-    <ion-button (click)="atras()">Volver</ion-button>
-
-    
-  
   </ion-list>
-
-  </ion-content>
-  
-
+</ion-content>

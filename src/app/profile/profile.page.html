@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button (click)="atras()"></ion-back-button>
     </ion-buttons>
-    <ion-title>Perfil</ion-title>
+    <ion-title>Editar Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,43 +12,29 @@
     <ion-label position="floating">Nombre</ion-label>
     <ion-input type="name" [(ngModel)]="name"></ion-input>
     <ion-note slot="helper">Actualizar Nombre</ion-note>
-
   </ion-item>
 
   <ion-item fill="solid">
     <ion-label position="floating">Apellido</ion-label>
-    <ion-input type="last_Name"  [(ngModel)]="last_Name"></ion-input>
+    <ion-input type="last_Name" [(ngModel)]="last_Name"></ion-input>
     <ion-note slot="helper">Actualizar Apellido</ion-note>
-
   </ion-item>
 
   <ion-item fill="solid">
     <ion-label position="floating">Email</ion-label>
-    <ion-input type="email"  [(ngModel)]="email"></ion-input>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
     <ion-note slot="helper">Actualizar Email</ion-note>
-
   </ion-item>
-  
+
   <ion-item fill="solid">
     <ion-label position="floating">Contraseña</ion-label>
     <ion-input type="Contraseña" [(ngModel)]="password"></ion-input>
     <ion-note slot="helper">Actualizar Contraseña</ion-note>
-
-    
   </ion-item>
 
+  <ion-list style="text-align: center">
+    <ion-button (click)="Actu()">Actualizar</ion-button>
 
-
-  <ion-list style="text-align:center">
-    <ion-button (click)="atras()" >Volver</ion-button>
-  
-  <ion-button (click)="Actu()" >Actualizar</ion-button>
-  
-
-<ion-button color="danger" (click)="delete()" >Borrar Usuario</ion-button>
-
+    <ion-button color="danger" (click)="delete()">Borrar Usuario</ion-button>
   </ion-list>
-
-
-
 </ion-content>
