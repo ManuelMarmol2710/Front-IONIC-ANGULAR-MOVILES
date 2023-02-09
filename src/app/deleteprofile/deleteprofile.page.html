@@ -1,25 +1,20 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="atras()"></ion-back-button>
+    </ion-buttons>
     <ion-title>Eliminar Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-item fill="solid">
     <ion-label position="floating">Escriba su email para Eliminar</ion-label>
     <ion-input type="Contraseña" [(ngModel)]="email"></ion-input>
     <ion-note slot="helper"></ion-note>
- </ion-item>
-    
+  </ion-item>
 
-  <ion-list style="text-align:center">
-
-    <ion-button (click)="atras()" >Volver</ion-button>
-  
-    <ion-button color="danger" (click)="delete()" >Borrar Usuario</ion-button>
-
-
+  <ion-list style="text-align: center">
+    <ion-button color="danger" (click)="delete()">Borrar Usuario</ion-button>
   </ion-list>
- 
 </ion-content>

@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'ver-collections',
     loadChildren: () => import('./ver-collections/ver-collections.module').then( m => m.VerCollectionsPageModule)
   },
+  {
+    path: 'configuracion',
+    loadChildren: () => import('./configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
+  },
 
 ];
 

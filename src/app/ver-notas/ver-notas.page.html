@@ -1,31 +1,33 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button (click)="atras()" ></ion-back-button>
+      <ion-back-button (click)="atras()"></ion-back-button>
     </ion-buttons>
     <ion-title>Notas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-item>
+    <ion-button (click)="buscar()">Buscar</ion-button>
+    <ion-input [(ngModel)]="title"></ion-input>
+    <ion-button color="danger" (click)="delete()">🗑️</ion-button>
+  </ion-item>
+  {{ res }}
+
   <ion-card *ngIf="data1">
     <ion-card-header>
-      <ion-card-title>
-        {{ data1 }}
-      </ion-card-title>
-      <ion-card-subtitle>
-          {{ data1 }}
-      </ion-card-subtitle>
+      <ion-card-title> {{ data1 }} </ion-card-title>
+      <ion-card-subtitle> {{ data1 }} </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-item *ngFor = "let i of data1.res">
-
-        {{i}}
-      </ion-item>
-  
     </ion-card-content>
-   
   </ion-card>
-  <ion-button (click)="mostrar()" >Mostrar</ion-button>
- 
+
+  <ion-item *ngIf="data1">
+
+    <ion-input value="{{data1}}"></ion-input>
+
+  </ion-item>
+
 </ion-content>

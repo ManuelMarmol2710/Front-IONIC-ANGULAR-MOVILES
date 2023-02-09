@@ -5,24 +5,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-button (click)="buscar()" >Buscar</ion-button>
-
-    <ion-input placeholder=""  [(ngModel)]="title" ></ion-input>
-    <ion-button color="danger" (click)="delete()" >🗑️</ion-button>
-  </ion-item>
-  {{res}}
-
-  <ion-list style="text-align:center">
-  
-    <ion-button (click)="newNote()" >Nueva nota</ion-button>
-    <ion-button (click)="verCollect()" >Colecciones</ion-button>
-    
-    <ion-button (click)="edit()" > Editar perfil</ion-button>
+  <ion-list style="text-align: center">
+    <ion-button (click)="newNote()">Nueva nota</ion-button>
+    <br />
+    <br />
     <ion-button (click)="openDetailsWithQueryParams()">Notas</ion-button>
-
-    <ion-button color="danger" (click)="logout()" >Cerrar sesion</ion-button>
-    
+    <br />
+    <br />
+    <ion-button (click)="verCollect()">Colecciones</ion-button>
+    <br />
+    <br />
+    <ion-button (click)="config()" color="medium"> Configuracion</ion-button>
   </ion-list>
-  
 </ion-content>
