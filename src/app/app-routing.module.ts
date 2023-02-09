@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'configuracion',
     loadChildren: () => import('./configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
   },
+  {
+    path: 'editar-nota',
+    loadChildren: () => import('./editar-nota/editar-nota.module').then( m => m.EditarNotaPageModule)
+  },
 
 ];
 

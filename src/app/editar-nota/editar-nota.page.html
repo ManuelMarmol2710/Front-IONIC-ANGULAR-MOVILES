@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="atras()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Nota</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item *ngIf="data">
+
+    <ion-input value="{{data}}"></ion-input>
+
+  </ion-item> 
+
+  <ion-item *ngIf="data">
+
+    <ion-input value="{{data}}"></ion-input>
+
+  </ion-item> 
+
+  <ion-button color="danger" (click)="save()">Guardar nota</ion-button>
+
+  <ion-button color="danger" (click)="delete()">Borrar nota</ion-button>
+
+</ion-content>

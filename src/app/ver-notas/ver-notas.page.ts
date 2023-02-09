@@ -13,7 +13,7 @@ export class VerNotasPage implements OnInit {
   data1: any;
   res: any;
   i: any;
-  title: string;
+  title: any;
 
   constructor(
     private router: Router,
@@ -22,8 +22,8 @@ export class VerNotasPage implements OnInit {
     private http: HttpClient
   ) {
     this.route.queryParams.subscribe((params) => {
-      if (params && params.res) {
-        this.data1 = params.res;
+      if (params && params.title) {
+        this.data1 = params.title;
       }
     });
 
@@ -34,13 +34,16 @@ export class VerNotasPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   buscar() {
     this.http.get(`http://localhost:3000/note/${this.data}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         console.log(res);
+        
+
       },
       (error) => {
         console.log(error);
