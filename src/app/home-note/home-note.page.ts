@@ -45,7 +45,7 @@ export class HomeNotePage implements OnInit {
 
         let navigationExtras: NavigationExtras = {
           queryParams: {
-            res: JSON.stringify(res),
+            data1: JSON.stringify(res),
           },
         };
 
