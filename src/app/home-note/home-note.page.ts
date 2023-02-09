@@ -10,13 +10,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomeNotePage implements OnInit {
 
-  nota = {
-
-
-
-  };
-
-      title!:string;
+     title!:string;
       res!: string;
       data: any;
   

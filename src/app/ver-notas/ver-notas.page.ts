@@ -12,7 +12,8 @@ export class VerNotasPage implements OnInit {
 
 data: any;
 data1: any;
-res1: any;
+res: any;
+i: any;
 
   constructor(private router: Router, private route: ActivatedRoute,private alertController: AlertController,
     private http: HttpClient, ) { 
@@ -21,9 +22,9 @@ res1: any;
 
         console.log('params ', params)
         
-        if(params && params.notes && params.title){
+        if(params && params.res){
         
-        this.data1 = params.notes && params.title
+        this.data1 = params.res
           
         }
         
@@ -51,14 +52,15 @@ res1: any;
 
   mostrar(){
  
+   
     this.http.get(( `http://localhost:3000/note/${(this.data)}`)).subscribe(res =>{
 
     localStorage.setItem('blocNotes',JSON.stringify(res))
     console.log(res)
-    
+     
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        res1: JSON.stringify(this.res1),
+        res: JSON.stringify(res),
       }
       }
     
@@ -70,8 +72,7 @@ this.router.navigate(['ver-notas'],navigationExtras)
     console.log(error)
     this.presentAlert('Titulo no encontrado.', error.error.msg)
         })
-
-
+   
       }
     
   

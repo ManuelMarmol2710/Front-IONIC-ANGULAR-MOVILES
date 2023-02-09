@@ -18,8 +18,13 @@
       </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-    </ion-card-content>
+      <ion-item *ngFor = "let i of data1.res">
 
+        {{i}}
+      </ion-item>
+  
+    </ion-card-content>
+   
   </ion-card>
   <ion-button (click)="mostrar()" >Mostrar</ion-button>
  
