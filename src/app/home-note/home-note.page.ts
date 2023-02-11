@@ -9,8 +9,7 @@ import { AlertController } from "@ionic/angular";
   styleUrls: ["./home-note.page.scss"],
 })
 export class HomeNotePage implements OnInit {
-  title!: string;
-  res!: string;
+  res: any;
   data: any;
 
   constructor(
@@ -45,7 +44,7 @@ export class HomeNotePage implements OnInit {
 
         let navigationExtras: NavigationExtras = {
           queryParams: {
-            data1: JSON.stringify(res),
+            res: JSON.stringify(res),
           },
         };
 

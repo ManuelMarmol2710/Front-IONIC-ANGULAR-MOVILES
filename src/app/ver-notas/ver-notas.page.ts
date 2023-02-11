@@ -9,11 +9,36 @@ import { AlertController } from "@ionic/angular";
   styleUrls: ["./ver-notas.page.scss"],
 })
 export class VerNotasPage implements OnInit {
+
   data: any;
   data1: any;
   res: any;
-  i: any;
   title: any;
+  notes:any;
+
+  cards = [
+    {
+      title: 'Card Title 1',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button'
+    },
+    {
+      title: 'Card Title 2',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button'
+    },
+    {
+      title: 'Card Title 3',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button'
+    },
+    {
+      title: 'Card Title 4',
+      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      buttonText: 'Button'
+    },
+
+  ];
 
   constructor(
     private router: Router,
@@ -22,8 +47,20 @@ export class VerNotasPage implements OnInit {
     private http: HttpClient
   ) {
     this.route.queryParams.subscribe((params) => {
-      if (params && params.title) {
-        this.data1 = params.title;
+      if (params && params.res) {
+        this.data1 = params.res;
+      }
+    });
+
+    this.route.queryParams.subscribe((params) => {
+      if (params && params.res) {
+        this.title = params.res;
+      }
+    });
+
+    this.route.queryParams.subscribe((params) => {
+      if (params && params.res) {
+        this.notes = params.res;
       }
     });
 
@@ -34,16 +71,13 @@ export class VerNotasPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   buscar() {
     this.http.get(`http://localhost:3000/note/${this.data}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         console.log(res);
-        
-
       },
       (error) => {
         console.log(error);
