@@ -9,35 +9,35 @@ import { AlertController } from "@ionic/angular";
   styleUrls: ["./ver-notas.page.scss"],
 })
 export class VerNotasPage implements OnInit {
-
   data: any;
   data1: any;
   res: any;
   title: any;
-  notes:any;
+  notes: any;
+
+  title1: any;
 
   cards = [
     {
-      title: 'Card Title 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button'
+      title: "Card Title 1",
+      description:
+        "Some quick example text to build on the card title and make up the bulk of the card content",
     },
     {
-      title: 'Card Title 2',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button'
+      title: "Card Title 2",
+      description:
+        "Some quick example text to build on the card title and make up the bulk of the card content",
     },
     {
-      title: 'Card Title 3',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button'
+      title: "Card Title 3",
+      description:
+        "Some quick example text to build on the card title and make up the bulk of the card content",
     },
     {
-      title: 'Card Title 4',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button'
+      title: "Card Title 4",
+      description:
+        "Some quick example text to build on the card title and make up the bulk of the card content",
     },
-
   ];
 
   constructor(
@@ -49,18 +49,6 @@ export class VerNotasPage implements OnInit {
     this.route.queryParams.subscribe((params) => {
       if (params && params.res) {
         this.data1 = params.res;
-      }
-    });
-
-    this.route.queryParams.subscribe((params) => {
-      if (params && params.res) {
-        this.title = params.res;
-      }
-    });
-
-    this.route.queryParams.subscribe((params) => {
-      if (params && params.res) {
-        this.notes = params.res;
       }
     });
 
@@ -78,6 +66,12 @@ export class VerNotasPage implements OnInit {
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         console.log(res);
+
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            res: JSON.stringify(res),
+          },
+        };
       },
       (error) => {
         console.log(error);
@@ -87,7 +81,7 @@ export class VerNotasPage implements OnInit {
   }
 
   delete() {
-    this.http.delete(`http://localhost:3000/note/${this.title}`).subscribe(
+    this.http.delete(`http://localhost:3000/note/${this.title1}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         console.log(res);
