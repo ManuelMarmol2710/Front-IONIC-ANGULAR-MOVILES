@@ -15,6 +15,7 @@ export class HomeBlocPage implements OnInit {
   title!: string;
   owner!: string;
   data: any;
+  
 
   constructor(
     private http: HttpClient,
@@ -35,26 +36,29 @@ export class HomeBlocPage implements OnInit {
 
   save() {
     let cre = {
-      notes: this.notes,
       title: this.title,
+      notes: this.notes,
     };
+
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        notes: JSON.stringify(this.notes),
         title: JSON.stringify(this.title),
+        notes: JSON.stringify(this.notes),
       },
     };
 
-    this.http.post(`http://localhost:3000/note/${this.data}`, cre).subscribe(
-      (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
+    this.http
+      .post(`http://localhost:3000/note/${this.data}`,cre)
+      .subscribe(
+        (res) => {
+          localStorage.setItem("blocNotes", JSON.stringify(res));
 
-        this.router.navigate(["ver-notas"], navigationExtras);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+          this.router.navigate(["ver-notas"], navigationExtras);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   atras() {

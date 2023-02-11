@@ -39,12 +39,12 @@ export class HomeNotePage implements OnInit {
 
     this.http.get(`http://localhost:3000/note/${this.data}`).subscribe(
       (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
+        //localStorage.setItem("blocNotes", JSON.stringify(res));
         console.log(res);
 
         let navigationExtras: NavigationExtras = {
           queryParams: {
-            res: JSON.stringify(res),
+            res:JSON.stringify(res),
           },
         };
 

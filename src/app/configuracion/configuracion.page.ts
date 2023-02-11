@@ -38,7 +38,9 @@ export class ConfiguracionPage implements OnInit {
   }
 
   logout() {
+    console.log('Sesion cerrada.')
     this.router.navigateByUrl("/signin");
+    
   }
 
   edit() {
