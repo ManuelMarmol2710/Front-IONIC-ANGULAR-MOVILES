@@ -21,7 +21,7 @@ export class EditarNotaPage implements OnInit {
   }
 
   save(){
-
+    
   }
 
   delete() {

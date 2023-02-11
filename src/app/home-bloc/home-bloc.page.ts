@@ -33,7 +33,7 @@ export class HomeBlocPage implements OnInit {
 
   ngOnInit() {}
 
-  Save() {
+  save() {
     let cre = {
       notes: this.notes,
       title: this.title,

@@ -8,26 +8,22 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-item>
     <ion-button (click)="buscar()">Buscar</ion-button>
-    <ion-input [(ngModel)]="title"></ion-input>
+    <ion-input ></ion-input>
     <ion-button color="danger" (click)="delete()">🗑️</ion-button>
   </ion-item>
   {{ res }}
 
-  <ion-card *ngFor="let data of data1">
+  <ion-card *ngFor="let card of cards">
     <ion-card-header>
-      <ion-card-title routerLink="/editar-nota"> {{ data.title }} </ion-card-title>
-      <ion-card-subtitle> {{ data.notes }} </ion-card-subtitle>
+      <ion-card-title routerLink="/editar-nota"> {{ card.title }} </ion-card-title>
+      <ion-card-subtitle> {{ card.description }} </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
     </ion-card-content>
   </ion-card>
 
-  <ion-item *ngIf="data1">
-
-    <ion-input value="{{data1}}"></ion-input>
-
-  </ion-item> 
 
 </ion-content>
