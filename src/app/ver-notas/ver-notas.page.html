@@ -16,14 +16,15 @@
   </ion-item>
   {{ res }}
 
-  <ion-card *ngFor="let card of cards">
-    <ion-card-header>
-      <ion-card-title routerLink="/editar-nota"> {{ card.title }} </ion-card-title>
-      <ion-card-subtitle> {{ card.description }} </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-    </ion-card-content>
-  </ion-card>
+    <ion-card *ngFor="let card of data1">
+      <ion-card-header>
+        <ion-card-title routerLink="/editar-nota"> {{ card.title }} </ion-card-title>
+        <ion-card-subtitle> {{ card.notes}} </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+      </ion-card-content>
+    </ion-card>
 
+ 
 
-</ion-content>
+  

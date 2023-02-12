@@ -25,5 +25,19 @@
 
   <ion-list style="text-align: center">
     <ion-button (click)="save()">Guardar</ion-button>
+    <ion-button (click)="show()">Mostrar Notas</ion-button>
   </ion-list>
+
+
+  <ion-card *ngFor="let card of Notes | keyvalue">
+    <ion-card-header>
+      <ion-card-title routerLink="/editar-nota" [queryParams]="{Notes}"> 
+      
+        {{card.key}}:{{ card.value | json}} 
+      
+      </ion-card-title>
+      </ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

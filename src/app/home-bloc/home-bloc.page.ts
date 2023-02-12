@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 import { AlertController } from "@ionic/angular";
-import { NgModule } from "@angular/core";
-import { SigninPage } from "../signin/signin.page";
+
 
 @Component({
   selector: "app-home-bloc",
@@ -15,7 +14,7 @@ export class HomeBlocPage implements OnInit {
   title!: string;
   owner!: string;
   data: any;
-
+Notes: any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -31,25 +30,26 @@ export class HomeBlocPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  
+
+}
 
   save() {
     let cre = {
       notes: this.notes,
       title: this.title,
     };
-    let navigationExtras: NavigationExtras = {
+    let navigation: NavigationExtras = {
       queryParams: {
-        notes: JSON.stringify(this.notes),
-        title: JSON.stringify(this.title),
+        email: this.data,
       },
     };
-
-    this.http.post(`http://localhost:3000/note/${this.data}`, cre).subscribe(
+    this.http.post(`http://localhost:3000/note/${this.data}`,cre ).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
 
-        this.router.navigate(["ver-notas"], navigationExtras);
+        this.router.navigate(["home-bloc"], navigation);
       },
       (error) => {
         console.log(error);
@@ -57,6 +57,28 @@ export class HomeBlocPage implements OnInit {
     );
   }
 
+  show(){
+  
+    let navigation: NavigationExtras = {
+      queryParams: {
+        email: this.data,
+      },
+    };
+    this.http.get(`http://localhost:3000/note/${this.data}`, ).subscribe(
+      (res) => {
+        localStorage.setItem("blocNotes", JSON.stringify(res));
+this.Notes = res
+console.log(res)
+
+        this.router.navigate(["home-bloc"], navigation);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+
+  }
   atras() {
     let navigation: NavigationExtras = {
       queryParams: {

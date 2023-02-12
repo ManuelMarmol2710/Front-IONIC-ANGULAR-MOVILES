@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 import { AlertController } from "@ionic/angular";
+import { title } from "process";
 
 @Component({
   selector: "app-home-note",
@@ -44,11 +45,14 @@ export class HomeNotePage implements OnInit {
 
         let navigationExtras: NavigationExtras = {
           queryParams: {
-            res: JSON.stringify(res),
+            
+            
+            res: res,
+          
+          
           },
-        };
-
-        this.router.navigate(["ver-notas"], navigationExtras);
+        };this.router.navigate(["ver-notas"], navigationExtras);
+   
       },
       (error) => {
         console.log(error);
@@ -56,7 +60,7 @@ export class HomeNotePage implements OnInit {
       }
     );
 
-    this.router.navigate(["ver-notas"], navigation);
+
   }
 
   verCollect() {

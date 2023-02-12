@@ -13,32 +13,20 @@ export class VerNotasPage implements OnInit {
   data: any;
   data1: any;
   res: any;
-  title: any;
-  notes:any;
-
+  title1: any;
+  notes1:any;
+ 
   cards = [
     {
-      title: 'Card Title 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
+      title: 'Crear Nota',
+      notes: 'Crear Nota',
       buttonText: 'Button'
     },
-    {
-      title: 'Card Title 2',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button'
-    },
-    {
-      title: 'Card Title 3',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button'
-    },
-    {
-      title: 'Card Title 4',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button'
-    },
+   
 
-  ];
+  ]
+
+   
 
   constructor(
     private router: Router,
@@ -46,22 +34,21 @@ export class VerNotasPage implements OnInit {
     private alertController: AlertController,
     private http: HttpClient
   ) {
-    this.route.queryParams.subscribe((params) => {
+  
+  
+ 
+ this.route.queryParams.subscribe((params) => {
       if (params && params.res) {
-        this.data1 = params.res;
+        this.title1 = params.res;
       }
+  
     });
 
-    this.route.queryParams.subscribe((params) => {
-      if (params && params.res) {
-        this.title = params.res;
+this.route.queryParams.subscribe((params) => {
+      if (params && params.title && params.notes) {
+        this.notes1 = params.title && params.notes;
       }
-    });
-
-    this.route.queryParams.subscribe((params) => {
-      if (params && params.res) {
-        this.notes = params.res;
-      }
+   
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -69,11 +56,28 @@ export class VerNotasPage implements OnInit {
         this.data = params["email"];
       }
     });
+  
+ 
+  
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+ 
 
   buscar() {
+    
+    const Notes = [    {
+      title: this.title1,
+      notes: this.notes1,
+      buttonText: 'Button'
+    },
+   
+  
+  ];   
+  console.log(Notes)
+
     this.http.get(`http://localhost:3000/note/${this.data}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
@@ -87,7 +91,7 @@ export class VerNotasPage implements OnInit {
   }
 
   delete() {
-    this.http.delete(`http://localhost:3000/note/${this.title}`).subscribe(
+    this.http.delete(`http://localhost:3000/note/${this.title1}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         console.log(res);
@@ -108,7 +112,7 @@ export class VerNotasPage implements OnInit {
 
     this.router.navigate(["home-note"], navigation);
   }
-
+  
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       cssClass: "my-custom-class",
@@ -121,5 +125,10 @@ export class VerNotasPage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
     console.log("onDidDismiss resolved with role", role);
+
+
+
   }
+
+
 }

@@ -11,18 +11,62 @@ import { AlertController } from "@ionic/angular";
 export class EditarNotaPage implements OnInit {
 
   data:any;
-
+notes:string;
+title:string;
   constructor(private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private alertController: AlertController) { }
+    private alertController: AlertController
+    ) { 
+      this.route.queryParams.subscribe((params) => {
+      console.log("params ", params);
+
+      if (params && params.res) {
+        this.data = params.res;
+      }
+    });
+
+
+      
+    }
 
   ngOnInit() {
   }
 
   save(){
-    
+    let cre = {
+      notes: this.notes,
+      title: this.title,
+    };
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        notes: JSON.stringify(this.notes),
+        title: JSON.stringify(this.title),
+      },
+    };
+    this.http.post(`http://localhost:3000/note/${this.data}`, cre).subscribe(
+      (res) => {
+        localStorage.setItem("blocNotes", JSON.stringify(res));
+
+      
+
+        this.router.navigate(["ver-notas"], navigationExtras);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+
+
+
   }
+
+
+
+
+
+
 
   delete() {
     this.http.delete(`http://localhost:3000/note/${this.data}`).subscribe(
@@ -44,7 +88,7 @@ export class EditarNotaPage implements OnInit {
       },
     };
 
-    this.router.navigate(["ver-notas"], navigation);
+    this.router.navigate(["home-bloc"], navigation);
   }
 
   async presentAlert(header: string, message: string) {
