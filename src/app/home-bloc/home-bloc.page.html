@@ -32,7 +32,7 @@
 
   <ion-card *ngFor="let card of Notes | keyvalue">
     <ion-card-header>
-      <ion-card-title routerLink="/editar-nota" [queryParams]="{Notes}">
+      <ion-card-title routerLink="/editar-nota" [queryParams]="{sendNotes}">
         {{ card.value | json}}
       </ion-card-title>
     </ion-card-header>
