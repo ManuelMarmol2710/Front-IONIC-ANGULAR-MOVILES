@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 import { AlertController } from "@ionic/angular";
-import { title } from "process";
 
 @Component({
   selector: "app-home-note",
@@ -21,8 +20,6 @@ export class HomeNotePage implements OnInit {
     private route: ActivatedRoute
   ) {
     this.route.queryParams.subscribe((params) => {
-      console.log("params ", params);
-
       if (params && params["email"]) {
         this.data = params["email"];
       }
@@ -45,22 +42,16 @@ export class HomeNotePage implements OnInit {
 
         let navigationExtras: NavigationExtras = {
           queryParams: {
-            
-            
             res: res,
-          
-          
           },
-        };this.router.navigate(["ver-notas"], navigationExtras);
-   
+        };
+        this.router.navigate(["ver-notas"], navigationExtras);
       },
       (error) => {
         console.log(error);
         this.presentAlert("Titulo no encontrado.", error.error.msg);
       }
     );
-
-
   }
 
   verCollect() {
@@ -104,6 +95,5 @@ export class HomeNotePage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-    console.log("onDidDismiss resolved with role", role);
   }
 }

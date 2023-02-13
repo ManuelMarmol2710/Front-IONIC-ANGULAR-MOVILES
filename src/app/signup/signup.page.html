@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-item>
-  <ion-label >Nombre</ion-label>
+  <ion-label>Nombre</ion-label>
   <ion-input [(ngModel)]="name" placeholder="nombre"></ion-input>
 </ion-item>
 <ion-item>
@@ -17,21 +17,21 @@
 </ion-item>
 <ion-content>
   <ion-item>
-    <ion-label >Email</ion-label>
-    <ion-input type="email" email [(ngModel)]="email" placeholder="ejemplo@gmail.com" name="email"></ion-input>
+    <ion-label>Email</ion-label>
+    <ion-input
+      type="email"
+      name="email"
+      [(ngModel)]="email"
+      placeholder="ejemplo@gmail.com"
+    ></ion-input>
   </ion-item>
+
   <ion-item>
     <ion-label>Contraseña</ion-label>
     <ion-input [(ngModel)]="password" placeholder="contraseña"></ion-input>
   </ion-item>
 
-  <ion-list style="text-align:center">
-  
-    <ion-button (click)="Registrar()" >Registrar</ion-button>
-  
-
-    
+  <ion-list style="text-align: center">
+    <ion-button (click)="Registrar()">Registrar</ion-button>
   </ion-list>
-
-  
 </ion-content>

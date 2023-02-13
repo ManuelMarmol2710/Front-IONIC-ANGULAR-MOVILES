@@ -1,6 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Route, Router } from "@angular/router";
+import {
+  Route,
+  Router,
+  NavigationExtras,
+  ActivatedRoute,
+} from "@angular/router";
 import { AlertController } from "@ionic/angular";
 
 @Component({
@@ -10,29 +15,39 @@ import { AlertController } from "@ionic/angular";
 })
 export class DeleteprofilePage implements OnInit {
   email!: string;
+  data!: string;
 
   constructor(
     private http: HttpClient,
     private router: Router,
+    private route: ActivatedRoute,
     private alertController: AlertController
-  ) {}
+  ) { }
 
   ngOnInit() {}
 
   atras() {
-    this.router.navigateByUrl("/profile");
+    let navigation: NavigationExtras = {
+      queryParams: {
+        email: this.data,
+      },
+    };
+
+    this.router.navigate(["profile"], navigation);
   }
 
   delete() {
-    this.http.delete(`http://localhost:3000/signup/${this.email} `).subscribe(
-      (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
-        this.router.navigateByUrl("/signin");
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+
+      this.http.delete(`http://localhost:3000/signup/${this.email} `).subscribe(
+        (res) => {
+          localStorage.setItem("blocNotes", JSON.stringify(res));
+          this.router.navigateByUrl("/signin");
+        },
+        (error) => {
+          console.log(error);
+          this.presentAlert("Usuario incorrecto.", error.error.msg);
+        }
+      );
   }
 
   async presentAlert(header: string, message: string) {
@@ -44,8 +59,5 @@ export class DeleteprofilePage implements OnInit {
     });
 
     await alert.present();
-
-    const { role } = await alert.onDidDismiss();
-    console.log("onDidDismiss resolved with role", role);
   }
 }
