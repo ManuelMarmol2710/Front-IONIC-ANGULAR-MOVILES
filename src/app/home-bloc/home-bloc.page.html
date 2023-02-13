@@ -9,7 +9,11 @@
 <ion-content>
   <ion-item>
     <ion-label>Titulo</ion-label>
-    <ion-input [(ngModel)]="title" value="53703" [disabled]="false"></ion-input>
+    <ion-input
+      [(ngModel)]="title"
+      value="53703"
+      [disabled]="false"
+    ></ion-input>
   </ion-item>
 
   <ion-item>
@@ -21,23 +25,17 @@
     ></ion-input>
   </ion-item>
 
-  <br />
-
   <ion-list style="text-align: center">
     <ion-button (click)="save()">Guardar</ion-button>
     <ion-button (click)="show()">Mostrar Notas</ion-button>
   </ion-list>
 
-
   <ion-card *ngFor="let card of Notes | keyvalue">
     <ion-card-header>
-      <ion-card-title routerLink="/editar-nota" [queryParams]="{Notes}"> 
-      
-        {{card.key}}:{{ card.value | json}} 
-      
+      <ion-card-title routerLink="/editar-nota" [queryParams]="{Notes}">
+        {{ card.value | json}}
       </ion-card-title>
-      </ion-card-header>
-    <ion-card-content>
-    </ion-card-content>
+    </ion-card-header>
+    <ion-card-content> </ion-card-content>
   </ion-card>
 </ion-content>

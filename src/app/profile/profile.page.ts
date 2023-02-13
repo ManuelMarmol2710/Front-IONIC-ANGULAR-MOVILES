@@ -1,6 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Route, Router, NavigationExtras, ActivatedRoute } from "@angular/router";
+import {
+  Route,
+  Router,
+  NavigationExtras,
+  ActivatedRoute,
+} from "@angular/router";
 import { AlertController } from "@ionic/angular";
 
 @Component({
@@ -21,19 +26,10 @@ export class ProfilePage implements OnInit {
     private route: ActivatedRoute
   ) {
     this.route.queryParams.subscribe((params) => {
-      console.log("params ", params);
-
       if (params && params["email"]) {
         this.data = params["email"];
       }
     });
-
-    this.route.queryParams.subscribe((params) => {
-      if (params && params.res) {
-        this.email = params.res;
-      }
-    });
-
   }
 
   ngOnInit() {}
@@ -68,6 +64,12 @@ export class ProfilePage implements OnInit {
     this.router.navigate(["configuracion"], navigation);
   }
   delete() {
-    this.router.navigateByUrl("/deleteprofile");
+    let navigation: NavigationExtras = {
+      queryParams: {
+        email: this.data,
+      },
+    };
+
+    this.router.navigate(["deleteprofile"], navigation);
   }
 }

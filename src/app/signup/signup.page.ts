@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { NavigationExtras, Route, Router } from "@angular/router";
 import { AlertController } from "@ionic/angular";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-signup",
@@ -14,13 +15,18 @@ export class SignupPage implements OnInit {
   name!: string;
   last_Name!: string;
 
+  registerForm: FormGroup;
+  submitted = false;
+
   constructor(
     private http: HttpClient,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private formBuilder: FormBuilder
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   Registrar() {
     let cre = {
@@ -61,7 +67,6 @@ export class SignupPage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-    console.log("onDidDismiss resolved with role", role);
   }
 
   atras() {

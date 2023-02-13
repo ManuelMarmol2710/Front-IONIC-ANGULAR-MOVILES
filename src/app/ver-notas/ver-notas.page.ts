@@ -9,24 +9,19 @@ import { AlertController } from "@ionic/angular";
   styleUrls: ["./ver-notas.page.scss"],
 })
 export class VerNotasPage implements OnInit {
-
   data: any;
   data1: any;
   res: any;
   title1: any;
-  notes1:any;
- 
+  notes1: any;
+
   cards = [
     {
-      title: 'Crear Nota',
-      notes: 'Crear Nota',
-      buttonText: 'Button'
+      title: "Crear Nota",
+      notes: "Crear Nota",
+      buttonText: "Button",
     },
-   
-
-  ]
-
-   
+  ];
 
   constructor(
     private router: Router,
@@ -34,21 +29,16 @@ export class VerNotasPage implements OnInit {
     private alertController: AlertController,
     private http: HttpClient
   ) {
-  
-  
- 
- this.route.queryParams.subscribe((params) => {
+    this.route.queryParams.subscribe((params) => {
       if (params && params.res) {
         this.title1 = params.res;
       }
-  
     });
 
-this.route.queryParams.subscribe((params) => {
+    this.route.queryParams.subscribe((params) => {
       if (params && params.title && params.notes) {
         this.notes1 = params.title && params.notes;
       }
-   
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -56,27 +46,19 @@ this.route.queryParams.subscribe((params) => {
         this.data = params["email"];
       }
     });
-  
- 
-  
   }
 
-  ngOnInit() {
-  }
-
- 
+  ngOnInit() {}
 
   buscar() {
-    
-    const Notes = [    {
-      title: this.title1,
-      notes: this.notes1,
-      buttonText: 'Button'
-    },
-   
-  
-  ];   
-  console.log(Notes)
+    const Notes = [
+      {
+        title: this.title1,
+        notes: this.notes1,
+        buttonText: "Button",
+      },
+    ];
+    console.log(Notes);
 
     this.http.get(`http://localhost:3000/note/${this.data}`).subscribe(
       (res) => {
@@ -112,7 +94,7 @@ this.route.queryParams.subscribe((params) => {
 
     this.router.navigate(["home-note"], navigation);
   }
-  
+
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       cssClass: "my-custom-class",
@@ -123,12 +105,5 @@ this.route.queryParams.subscribe((params) => {
 
     await alert.present();
 
-    const { role } = await alert.onDidDismiss();
-    console.log("onDidDismiss resolved with role", role);
-
-
-
   }
-
-
 }

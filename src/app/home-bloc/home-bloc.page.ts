@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 import { AlertController } from "@ionic/angular";
 
-
 @Component({
   selector: "app-home-bloc",
   templateUrl: "./home-bloc.page.html",
@@ -14,7 +13,7 @@ export class HomeBlocPage implements OnInit {
   title!: string;
   owner!: string;
   data: any;
-Notes: any;
+  Notes: any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -30,10 +29,7 @@ Notes: any;
     });
   }
 
-  ngOnInit() {
-  
-
-}
+  ngOnInit() {}
 
   save() {
     let cre = {
@@ -45,7 +41,7 @@ Notes: any;
         email: this.data,
       },
     };
-    this.http.post(`http://localhost:3000/note/${this.data}`,cre ).subscribe(
+    this.http.post(`http://localhost:3000/note/${this.data}`, cre).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
 
@@ -53,22 +49,29 @@ Notes: any;
       },
       (error) => {
         console.log(error);
+        this.presentAlert("Campo de titulo o nota vacio.", error.error.msg);
       }
     );
+
+    this.title = "";
+    this.notes = "";
   }
 
-  show(){
-  
+  show() {
     let navigation: NavigationExtras = {
       queryParams: {
         email: this.data,
       },
     };
-    this.http.get(`http://localhost:3000/note/${this.data}`, ).subscribe(
+    this.http.get(`http://localhost:3000/note/${this.data}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
-this.Notes = res
-console.log(res)
+        this.Notes = res;
+        if (res != null) {
+          console.log(res);
+        } else {
+        
+        }
 
         this.router.navigate(["home-bloc"], navigation);
       },
@@ -76,9 +79,8 @@ console.log(res)
         console.log(error);
       }
     );
-
-
   }
+
   atras() {
     let navigation: NavigationExtras = {
       queryParams: {
@@ -86,5 +88,18 @@ console.log(res)
       },
     };
     this.router.navigate(["home-note"], navigation);
+  }
+
+  async presentAlert(header: string, message:string) {
+    const alert = await this.alertController.create({
+      cssClass: "my-custom-class",
+      header: header,
+      message: message,
+      buttons: ["OK"],
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
   }
 }
