@@ -6,7 +6,25 @@
     <ion-title>Colecciones</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-item>
+  <ion-label > Crear Coleccions o Buscar</ion-label>
+  <ion-input [(ngModel)]="collections" placeholder="Collecciones"></ion-input>
+</ion-item>
+<ion-button class="ion text-center" (click)="enviar()" >Guardar</ion-button>
+<ion-button class="ion text-center" (click)="show()" >Mostrar</ion-button>
+<ion-button class="ion text-center "(click)="favoritos()" >Favoritos</ion-button>
 <ion-content>
- 
+
+
+  <ion-card *ngFor="let card of collect | keyvalue">
+    <ion-card-header>
+      <ion-card-title routerLink="/editar-nota" [queryParams]="{collect}"> 
+     {{ card.value |json}} 
+
+      </ion-card-title>
+      </ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card> 
+
 </ion-content>

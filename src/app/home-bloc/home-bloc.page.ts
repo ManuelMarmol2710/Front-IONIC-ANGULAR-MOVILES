@@ -14,6 +14,8 @@ export class HomeBlocPage implements OnInit {
   owner!: string;
   data: any;
   Notes: any;
+  collections:string;
+sendNotes:string;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -67,6 +69,7 @@ export class HomeBlocPage implements OnInit {
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         this.Notes = res;
+        this.sendNotes = JSON.stringify(res) 
         if (res != null) {
           console.log(res);
         } else {

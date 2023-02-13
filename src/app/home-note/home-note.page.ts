@@ -28,32 +28,7 @@ export class HomeNotePage implements OnInit {
 
   ngOnInit() {}
 
-  openDetailsWithQueryParams() {
-    let navigation: NavigationExtras = {
-      queryParams: {
-        email: this.data,
-      },
-    };
-
-    this.http.get(`http://localhost:3000/note/${this.data}`).subscribe(
-      (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
-        console.log(res);
-
-        let navigationExtras: NavigationExtras = {
-          queryParams: {
-            res: res,
-          },
-        };
-        this.router.navigate(["ver-notas"], navigationExtras);
-      },
-      (error) => {
-        console.log(error);
-        this.presentAlert("Titulo no encontrado.", error.error.msg);
-      }
-    );
-  }
-
+ 
   verCollect() {
     let navigation: NavigationExtras = {
       queryParams: {

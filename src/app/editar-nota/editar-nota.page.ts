@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Route, Router, NavigationExtras, ActivatedRoute } from "@angular/router";
@@ -9,11 +10,13 @@ import { AlertController } from "@ionic/angular";
   styleUrls: ['./editar-nota.page.scss'],
 })
 export class EditarNotaPage implements OnInit {
-
+  dataNota:any;
   data:any;
 notes:string;
 title:string;
-  constructor(private http: HttpClient,
+collections:string;
+  
+constructor(private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
     private alertController: AlertController
@@ -21,8 +24,8 @@ title:string;
       this.route.queryParams.subscribe((params) => {
       console.log("params ", params);
 
-      if (params && params.res) {
-        this.data = params.res;
+      if (params && params.sendNotes) {
+        this.dataNota = params.sendNotes;
       }
     });
 
@@ -48,25 +51,25 @@ title:string;
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
 
-      
-
-        this.router.navigate(["ver-notas"], navigationExtras);
+      this.router.navigate(["home-bloc"], navigationExtras);
       },
       (error) => {
         console.log(error);
       }
     );
-
-
-
-
-  }
-
-
-
-
-
-
+   
+   
+    this.http.post(`http://localhost:3000/note/${this.title}/${this.collections}`, cre).subscribe(
+      (res) => {
+        localStorage.setItem("blocNotes", JSON.stringify(res));
+  
+  console.log(res)    
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+ }
 
   delete() {
     this.http.delete(`http://localhost:3000/note/${this.data}`).subscribe(
