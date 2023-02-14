@@ -6,12 +6,12 @@
 
 <ion-content>
   <ion-list style="text-align: center">
-    <ion-button (click)="newNote()">Nueva nota</ion-button>
+    <ion-button (click)="newNote()">Nueva nota <ion-icon slot="end" name='add-circle'></ion-icon></ion-button>
     <br />
     <br />
-    <ion-button (click)="verCollect()">Colecciones</ion-button>
+    <ion-button (click)="verCollect()">Colecciones <ion-icon slot="end" name='folder-open'></ion-icon></ion-button>
     <br />
     <br />
-    <ion-button (click)="config()" color="medium"> Configuracion</ion-button>
+    <ion-button (click)="config()" color="medium"> Configuracion <ion-icon slot="end" name='cog-sharp'></ion-icon></ion-button>
   </ion-list>
 </ion-content>

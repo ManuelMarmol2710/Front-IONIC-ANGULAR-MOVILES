@@ -104,6 +104,5 @@ export class VerNotasPage implements OnInit {
     });
 
     await alert.present();
-
   }
 }

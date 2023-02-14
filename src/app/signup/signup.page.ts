@@ -15,6 +15,8 @@ export class SignupPage implements OnInit {
   name!: string;
   last_Name!: string;
 
+  passwordForm: FormGroup;
+  emailForm: FormGroup;
   registerForm: FormGroup;
   submitted = false;
 
@@ -26,6 +28,22 @@ export class SignupPage implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    this.passwordForm = this.formBuilder.group({
+      password: ['', Validators.compose([
+        Validators.minLength(6),
+        Validators.required
+      
+      ])],
+  });
+
+  this.emailForm = this.formBuilder.group({
+    email: ['', Validators.compose([
+      Validators.email,
+      Validators.required
+    ])],
+  })
+
   }
 
   Registrar() {
@@ -53,7 +71,6 @@ export class SignupPage implements OnInit {
       }
     );
 
-    console.log(cre);
   }
 
   async presentAlert(header: string, message: string) {
@@ -66,7 +83,6 @@ export class SignupPage implements OnInit {
 
     await alert.present();
 
-    const { role } = await alert.onDidDismiss();
   }
 
   atras() {

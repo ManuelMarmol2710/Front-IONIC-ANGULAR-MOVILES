@@ -23,7 +23,6 @@ sendNotes:string;
     private route: ActivatedRoute
   ) {
     this.route.queryParams.subscribe((params) => {
-      console.log("params ", params);
 
       if (params && params["email"]) {
         this.data = params["email"];
@@ -69,6 +68,8 @@ sendNotes:string;
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         this.Notes = res;
+     console.log(this.Notes);
+     
         this.sendNotes = JSON.stringify(res) 
         if (res != null) {
           console.log(res);
@@ -83,7 +84,9 @@ sendNotes:string;
       }
     );
   }
-
+  trackItems(index: number, itemObject: any) {
+    return itemObject._id;
+  }
   atras() {
     let navigation: NavigationExtras = {
       queryParams: {
@@ -103,6 +106,5 @@ sendNotes:string;
 
     await alert.present();
 
-    const { role } = await alert.onDidDismiss();
   }
 }

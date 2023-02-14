@@ -9,33 +9,35 @@
 <ion-content>
   <ion-item>
     <ion-label>Titulo</ion-label>
-    <ion-input
-      [(ngModel)]="title"
-      value="53703"
-      [disabled]="false"
-    ></ion-input>
+    <ion-input [(ngModel)]="title" value="53703" [disabled]="false"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input
+    <ion-textarea
+      [autoGrow]="true"
       [(ngModel)]="notes"
       value="53703"
       [disabled]="false"
       placeholder="nota"
-    ></ion-input>
+    ></ion-textarea>
   </ion-item>
 
   <ion-list style="text-align: center">
-    <ion-button (click)="save()">Guardar</ion-button>
-    <ion-button (click)="show()">Mostrar Notas</ion-button>
+    <ion-button (click)="save()"
+      >Guardar <ion-icon slot="end" name="archive"></ion-icon
+    ></ion-button>
+    <ion-button (click)="show()"
+      >Mostrar Notas <ion-icon slot="end" name="folder-open"></ion-icon
+    ></ion-button>
   </ion-list>
 
-  <ion-card *ngFor="let card of Notes | keyvalue">
+  <ion-card *ngFor="let card of Notes; trackBy:trackItems">
     <ion-card-header>
       <ion-card-title routerLink="/editar-nota" [queryParams]="{sendNotes}">
-        {{ card.value | json}}
+        {{ card.title}}
       </ion-card-title>
     </ion-card-header>
-    <ion-card-content> </ion-card-content>
+    <ion-card-subtitle> </ion-card-subtitle>
+    <ion-card-content> {{ card.notes}} </ion-card-content>
   </ion-card>
 </ion-content>

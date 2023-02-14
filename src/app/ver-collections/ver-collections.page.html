@@ -10,21 +10,27 @@
   <ion-label > Crear Coleccions o Buscar</ion-label>
   <ion-input [(ngModel)]="collections" placeholder="Collecciones"></ion-input>
 </ion-item>
-<ion-button class="ion text-center" (click)="enviar()" >Guardar</ion-button>
-<ion-button class="ion text-center" (click)="show()" >Mostrar</ion-button>
-<ion-button class="ion text-center "(click)="favoritos()" >Favoritos</ion-button>
+<ion-button class="ion text-center" (click)="enviar()" >Guardar <ion-icon slot="end" name='archive'></ion-icon></ion-button>
+<ion-button class="ion text-center" (click)="show()" >Mostrar <ion-icon slot="end" name='folder-open'></ion-icon></ion-button>
+<ion-button class="ion text-center "(click)="favoritos()" color="warning" >Favoritos <ion-icon slot="end" name="star"> </ion-icon
+  ></ion-button>
 <ion-content>
 
-
-  <ion-card *ngFor="let card of collect | keyvalue">
+  <ion-card *ngFor="let card of collect; trackBy:trackItems">
     <ion-card-header>
-      <ion-card-title routerLink="/editar-nota" [queryParams]="{collect}"> 
-     {{ card.value |json}} 
-
+      <ion-card-title routerLink="/editar-nota" [queryParams]="{}">
+        Coleccion:{{ card.collections}}
+       
       </ion-card-title>
-      </ion-card-header>
-    <ion-card-content>
-    </ion-card-content>
-  </ion-card> 
 
+      <ion-card-title >
+        {{ card.title}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-subtitle>
+    </ion-card-subtitle>
+    <ion-card-content>
+      {{ card.notes}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
