@@ -17,21 +17,38 @@
 </ion-item>
 <ion-content>
   <ion-item>
+    
     <ion-label>Email</ion-label>
-    <ion-input
-      type="email"
-      name="email"
-      [(ngModel)]="email"
-      placeholder="ejemplo@gmail.com"
-    ></ion-input>
+    <form #loginForm="ngForm">
+      <ion-input
+        type="email"
+        name="email"
+        email
+        [(ngModel)]="email"
+        placeholder="ejemplo@gmail.com"
+      ></ion-input>
+    </form>
   </ion-item>
 
   <ion-item>
     <ion-label>Contraseña</ion-label>
-    <ion-input [(ngModel)]="password" placeholder="contraseña"></ion-input>
+    <form [formGroup]="passwordForm">
+      <ion-input
+        formControlName="password"
+        type="password"
+        class="form-control"
+        [(ngModel)]="password"
+        placeholder="contraseña"
+      ></ion-input>
+    </form>
   </ion-item>
 
   <ion-list style="text-align: center">
-    <ion-button (click)="Registrar()">Registrar</ion-button>
+    <ion-button
+      [disabled]="!loginForm.form.valid"
+      [disabled]="!passwordForm.valid"
+      (click)="Registrar()"
+      >Registrar</ion-button
+    >
   </ion-list>
 </ion-content>

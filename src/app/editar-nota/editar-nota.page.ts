@@ -1,42 +1,42 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Route, Router, NavigationExtras, ActivatedRoute } from "@angular/router";
+import {
+  Route,
+  Router,
+  NavigationExtras,
+  ActivatedRoute,
+} from "@angular/router";
 import { AlertController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-editar-nota',
-  templateUrl: './editar-nota.page.html',
-  styleUrls: ['./editar-nota.page.scss'],
+  selector: "app-editar-nota",
+  templateUrl: "./editar-nota.page.html",
+  styleUrls: ["./editar-nota.page.scss"],
 })
 export class EditarNotaPage implements OnInit {
-  dataNota:any;
-  data:any;
-notes:string;
-title:string;
-collections:string;
-  
-constructor(private http: HttpClient,
+  dataNota: any;
+  data: any;
+  notes: string;
+  title: string;
+  collections: string;
+
+  constructor(
+    private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
     private alertController: AlertController
-    ) { 
-      this.route.queryParams.subscribe((params) => {
-      console.log("params ", params);
+  ) {
+    this.route.queryParams.subscribe((params) => {
 
       if (params && params.sendNotes) {
         this.dataNota = params.sendNotes;
       }
     });
-
-
-      
-    }
-
-  ngOnInit() {
   }
 
-  save(){
+  ngOnInit() {}
+
+  save() {
     let cre = {
       notes: this.notes,
       title: this.title,
@@ -51,25 +51,26 @@ constructor(private http: HttpClient,
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
 
-      this.router.navigate(["home-bloc"], navigationExtras);
+        this.router.navigate(["home-bloc"], navigationExtras);
       },
       (error) => {
         console.log(error);
       }
     );
-   
-   
-    this.http.post(`http://localhost:3000/note/${this.title}/${this.collections}`, cre).subscribe(
-      (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
-  
-  console.log(res)    
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
- }
+
+    this.http
+      .post(`http://localhost:3000/note/${this.title}/${this.collections}`, cre)
+      .subscribe(
+        (res) => {
+          localStorage.setItem("blocNotes", JSON.stringify(res));
+
+          console.log(res);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
 
   delete() {
     this.http.delete(`http://localhost:3000/note/${this.title}`).subscribe(
@@ -84,6 +85,27 @@ constructor(private http: HttpClient,
     );
   }
 
+
+  fav(){
+    let cre = {
+      notes: this.notes,
+      title: this.title,
+    };
+    this.http
+    .post(`http://localhost:3000/note/${this.title}/Favorito`, cre)
+    .subscribe(
+      (res) => {
+        localStorage.setItem("blocNotes", JSON.stringify(res));
+
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+
+  }
   atras() {
     let navigation: NavigationExtras = {
       queryParams: {
@@ -104,8 +126,5 @@ constructor(private http: HttpClient,
 
     await alert.present();
 
-    const { role } = await alert.onDidDismiss();
-    console.log("onDidDismiss resolved with role", role);
   }
-
 }

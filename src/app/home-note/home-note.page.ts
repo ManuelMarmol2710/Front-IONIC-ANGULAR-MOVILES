@@ -28,7 +28,6 @@ export class HomeNotePage implements OnInit {
 
   ngOnInit() {}
 
- 
   verCollect() {
     let navigation: NavigationExtras = {
       queryParams: {
@@ -69,6 +68,5 @@ export class HomeNotePage implements OnInit {
 
     await alert.present();
 
-    const { role } = await alert.onDidDismiss();
   }
 }
