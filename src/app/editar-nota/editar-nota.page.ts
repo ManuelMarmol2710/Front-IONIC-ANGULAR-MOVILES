@@ -72,7 +72,7 @@ constructor(private http: HttpClient,
  }
 
   delete() {
-    this.http.delete(`http://localhost:3000/note/${this.data}`).subscribe(
+    this.http.delete(`http://localhost:3000/note/${this.title}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         console.log(res);

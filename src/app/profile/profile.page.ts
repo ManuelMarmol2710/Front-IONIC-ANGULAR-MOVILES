@@ -23,7 +23,8 @@ export class ProfilePage implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertController: AlertController
   ) {
     this.route.queryParams.subscribe((params) => {
       if (params && params["email"]) {
@@ -42,13 +43,14 @@ export class ProfilePage implements OnInit {
       last_Name: this.last_Name,
     };
 
-    this.http.put(`http://localhost:3000/signup/${this.email}`, cre).subscribe(
+    this.http.put(`http://localhost:3000/signup/${this.data}`, cre).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         this.router.navigateByUrl("/home-note");
       },
       (error) => {
         console.log(error);
+        this.presentAlert("Por favor llenar un dato para actualizar su perfil.", error.error.msg);
       }
     );
 
@@ -72,4 +74,19 @@ export class ProfilePage implements OnInit {
 
     this.router.navigate(["deleteprofile"], navigation);
   }
+
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      cssClass: "my-custom-class",
+      header: header,
+      message: message,
+      buttons: ["OK"],
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log("onDidDismiss resolved with role", role);
+  }
+
 }

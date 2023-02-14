@@ -7,6 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-item>
+  <ion-label position="floating">Email</ion-label>
+  <ion-input [(ngModel)]="data"  disabled></ion-input>
+  <ion-note slot="helper">Actualizar Email</ion-note>
+</ion-item>
+
 <ion-content>
   <ion-item fill="solid">
     <ion-label position="floating">Nombre</ion-label>
@@ -20,15 +26,9 @@
     <ion-note slot="helper">Actualizar Apellido</ion-note>
   </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input [(ngModel)]="email"></ion-input>
-    <ion-note slot="helper">Actualizar Email</ion-note>
-  </ion-item>
-
   <ion-item fill="solid">
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input type="Contraseña" [(ngModel)]="password"></ion-input>
+    <ion-label>Contraseña</ion-label>
+    <ion-input type="Contraseña" value="password" [(ngModel)]="password"></ion-input>
     <ion-note slot="helper">Actualizar Contraseña</ion-note>
   </ion-item>
 
