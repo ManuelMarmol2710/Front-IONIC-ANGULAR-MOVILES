@@ -8,13 +8,28 @@
 </ion-header>
 
 <ion-content>
-  <ion-item fill="solid">
-    <ion-label position="floating">Escriba su email para Eliminar</ion-label>
-    <ion-input type="Contraseña" [(ngModel)]="email"></ion-input>
-    <ion-note slot="helper"></ion-note>
-  </ion-item>
+  
+<ion-item>
+  <ion-label position="floating">Email</ion-label>
+  <ion-input [(ngModel)]="data" disabled></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label>Contraseña</ion-label>
+  <form [formGroup]="passwordForm">
+    <ion-input
+      formControlName="password"
+      type="password"
+      class="form-control"
+      [(ngModel)]="password"
+      placeholder="para ELIMINAR su perfil"
+    ></ion-input>
+  
+  </form>
+
+</ion-item>
+
 
   <ion-list style="text-align: center">
-    <ion-button color="danger" (click)="delete()">Borrar Usuario <ion-icon slot="end" name='close-circle'></ion-icon></ion-button>
+    <ion-button color="danger" [disabled]="!passwordForm.valid" (click)="delete()">Borrar Usuario <ion-icon slot="end" name='close-circle'></ion-icon></ion-button>
   </ion-list>
 </ion-content>

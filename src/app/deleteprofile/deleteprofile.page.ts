@@ -7,6 +7,7 @@ import {
   ActivatedRoute,
 } from "@angular/router";
 import { AlertController } from "@ionic/angular";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-deleteprofile",
@@ -15,16 +16,29 @@ import { AlertController } from "@ionic/angular";
 })
 export class DeleteprofilePage implements OnInit {
   email!: string;
-  data!: string;
-
+  data!: any;
+  password:string;
+  passwordForm: FormGroup;
   constructor(
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private alertController: AlertController
-  ) { }
+    private alertController: AlertController,
+    private formBuilder: FormBuilder
+  ) {     this.route.queryParams.subscribe((params) => {
+    if (params && params["email"]) {
+      this.data = params["email"];
+    }
+  });
+}
 
-  ngOnInit() {}
+  ngOnInit() {   this.passwordForm = this.formBuilder.group({
+    password: ['', Validators.compose([
+      Validators.minLength(6),
+      Validators.required
+    
+    ])],
+});}
 
   atras() {
     let navigation: NavigationExtras = {
@@ -38,7 +52,7 @@ export class DeleteprofilePage implements OnInit {
 
   delete() {
 
-      this.http.delete(`http://localhost:3000/signup/${this.email} `).subscribe(
+      this.http.delete(`http://localhost:3000/signup/${this.data} `).subscribe(
         (res) => {
           localStorage.setItem("blocNotes", JSON.stringify(res));
           this.router.navigateByUrl("/signin");

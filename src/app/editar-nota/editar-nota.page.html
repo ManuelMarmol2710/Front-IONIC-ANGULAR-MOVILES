@@ -15,20 +15,21 @@
 
   <ion-item>
     <ion-input
-      [(ngModel)]="dataNota"
+      [(ngModel)]="notes"
       [disabled]="false"
       placeholder="nota"
     ></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Colocar Collections</ion-label>
+    <ion-label>Collections</ion-label>
     <ion-input
       [(ngModel)]="collections"
-      placeholder="(Opcional)"
-      [disabled]="false"
-    ></ion-input>
+      placeholder="Escriba 'Favorito' para añadir"
+   ></ion-input>
   </ion-item>
+
+  
   <br />
   <ion-list style="text-align: center">
     <ion-button (click)="save()"
@@ -38,13 +39,11 @@
     <ion-button color="danger" (click)="delete()"
       >Borrar nota <ion-icon slot="end" name="trash-bin"></ion-icon
     ></ion-button>
-    
-
-    <ion-button class="ion text-center "(click)="favoritos()" color="warning" > Agregar a Favoritos <ion-icon slot="end" name="star"> </ion-icon>
-
-
-  </ion-list>
-  <ion-card *ngFor="let card of dataNota | keyvalue">
+    <ion-button class="ion text-center "(click)="fav()" color="warning" > Agregar a Favoritos <ion-icon slot="end" name="star"> </ion-icon>
+    </ion-button>
+    </ion-list>
+ 
+ <ion-card *ngFor="let card of dataNota | keyvalue">
     <ion-card-header>
       <ion-card-title> {{ card.value | json}} </ion-card-title>
     </ion-card-header>

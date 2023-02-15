@@ -7,13 +7,13 @@
   </ion-toolbar>
 </ion-header>
 <ion-item>
-  <ion-label > Crear Coleccions o Buscar</ion-label>
-  <ion-input [(ngModel)]="collections" placeholder="Collecciones"></ion-input>
+  <ion-label > Buscar</ion-label>
+  <ion-input [(ngModel)]="collections" placeholder=""></ion-input>
 </ion-item>
-<ion-button class="ion text-center" (click)="enviar()" >Guardar <ion-icon slot="end" name='archive'></ion-icon></ion-button>
 <ion-button class="ion text-center" (click)="show()" >Mostrar <ion-icon slot="end" name='folder-open'></ion-icon></ion-button>
 <ion-button class="ion text-center "(click)="favoritos()" color="warning" >Favoritos <ion-icon slot="end" name="star"> </ion-icon
   ></ion-button>
+  <ion-button class="ion text-center "(click)="borrar()" color="danger" >Borrar Coleccion <ion-icon slot="end" name='close-circle'></ion-icon></ion-button>
 <ion-content>
 
   <ion-card *ngFor="let card of collect; trackBy:trackItems">

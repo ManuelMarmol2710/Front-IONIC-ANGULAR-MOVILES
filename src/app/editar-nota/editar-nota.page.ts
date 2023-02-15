@@ -37,34 +37,23 @@ export class EditarNotaPage implements OnInit {
   ngOnInit() {}
 
   save() {
+    let navigation: NavigationExtras = {
+      queryParams: {
+        email: this.data,
+      },
+    };
     let cre = {
       notes: this.notes,
       title: this.title,
+      collections:this.collections
     };
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        notes: JSON.stringify(this.notes),
-        title: JSON.stringify(this.title),
-      },
-    };
-    this.http.post(`http://localhost:3000/note/${this.data}`, cre).subscribe(
-      (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
-
-        this.router.navigate(["home-bloc"], navigationExtras);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
     this.http
       .post(`http://localhost:3000/note/${this.title}/${this.collections}`, cre)
       .subscribe(
         (res) => {
           localStorage.setItem("blocNotes", JSON.stringify(res));
 
-          console.log(res);
+          console.log(res);   this.router.navigate(["home-note"], navigation);
         },
         (error) => {
           console.log(error);
@@ -91,18 +80,23 @@ export class EditarNotaPage implements OnInit {
       notes: this.notes,
       title: this.title,
     };
-    this.http
-    .post(`http://localhost:3000/note/${this.title}/Favorito`, cre)
-    .subscribe(
-      (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
-
-        console.log(res);
+    let navigation: NavigationExtras = {
+      queryParams: {
+        email: this.data,
       },
-      (error) => {
-        console.log(error);
-      }
-    );
+    };
+  this.http
+      .post(`http://localhost:3000/note/${this.title}/Favorito`, cre)
+      .subscribe(
+        (res) => {
+          localStorage.setItem("blocNotes", JSON.stringify(res));
+          this.router.navigate(["home-bloc"], navigation);
+          console.log(res);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
 
 
   }

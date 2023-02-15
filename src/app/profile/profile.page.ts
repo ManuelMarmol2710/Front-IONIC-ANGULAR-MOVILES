@@ -7,7 +7,7 @@ import {
   ActivatedRoute,
 } from "@angular/router";
 import { AlertController } from "@ionic/angular";
-
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.page.html",
@@ -19,12 +19,13 @@ export class ProfilePage implements OnInit {
   name!: string;
   last_Name!: string;
   data!: any;
-
+  passwordForm: FormGroup;
   constructor(
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private formBuilder: FormBuilder
   ) {
     this.route.queryParams.subscribe((params) => {
       if (params && params["email"]) {
@@ -33,20 +34,36 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+
+  
+  ngOnInit() {
+    this.passwordForm = this.formBuilder.group({
+      password: ['', Validators.compose([
+        Validators.minLength(6),
+        Validators.required
+      
+      ])],
+  });
+
+  }
+
 
   Actu() {
+
     let cre = {
       email: this.email,
-      password: this.password,
-      name: this.name,
+       name: this.name,
       last_Name: this.last_Name,
     };
-
+let navigation: NavigationExtras = {
+      queryParams: {
+        email: this.data,
+      },
+    };
     this.http.put(`http://localhost:3000/signup/${this.data}`, cre).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
-        this.router.navigateByUrl("/home-note");
+        this.router.navigate(["home-note"], navigation);
       },
       (error) => {
         console.log(error);
@@ -63,6 +80,31 @@ export class ProfilePage implements OnInit {
 
     this.router.navigate(["configuracion"], navigation);
   }
+
+actuPassword(){
+  let cre = {
+    password: this.password,
+  };
+  let navigation: NavigationExtras = {
+    queryParams: {
+      email: this.data,
+    },
+  };
+  this.http.put(`http://localhost:3000/signup/password/${this.data}`, cre).subscribe(
+    (res) => {
+      localStorage.setItem("blocNotes", JSON.stringify(res));
+      this.router.navigate(["home-note"], navigation);
+    },
+    (error) => {
+      console.log(error);
+      this.presentAlert("Por favor llenar un dato para actualizar su perfil.", error.error.msg);
+    }
+  );
+
+
+}
+
+
   delete() {
     let navigation: NavigationExtras = {
       queryParams: {

@@ -27,29 +27,6 @@ export class VerCollectionsPage implements OnInit {
 
   ngOnInit() {}
 
-  enviar() {
-    let cre = {
-      collections: this.collections,
-    };
-    let navigation: NavigationExtras = {
-      queryParams: {
-        email: this.data,
-      },
-    };
-    this.http
-      .post(`http://localhost:3000/collections/${this.data}`, cre)
-      .subscribe(
-        (res) => {
-          localStorage.setItem("blocNotes", JSON.stringify(res));
-
-          console.log(res);
-          this.router.navigate(["ver-collections"], navigation);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  }
 
   show() {
     let navigation: NavigationExtras = {
@@ -67,9 +44,10 @@ export class VerCollectionsPage implements OnInit {
         },
         (error) => {
           console.log(error);
+          this.presentAlert("Titulo no encontrado.", error.error.msg);
         }
       );
-  }
+      }
   favoritos() {
     let navigation: NavigationExtras = {
       queryParams: {
@@ -77,7 +55,7 @@ export class VerCollectionsPage implements OnInit {
       },
     };
     this.http
-      .get(`http://localhost:3000/collections/${this.data}/Favoritos`)
+      .get(`http://localhost:3000/collections/${this.data}/Favorito`)
       .subscribe(
         (res) => {
           localStorage.setItem("blocNotes", JSON.stringify(res));
@@ -92,6 +70,21 @@ export class VerCollectionsPage implements OnInit {
   trackItems(index: number, itemObject: any) {
     return itemObject._id;
   }
+
+
+  borrar(){
+    this.http.delete(`http://localhost:3000/collections/${this.data}/${this.collections}`).subscribe(
+      (res) => {
+        localStorage.setItem("blocNotes", JSON.stringify(res));
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+        this.presentAlert("Titulo no encontrado.", error.error.msg);
+      });
+
+  }
+
   atras() {
     let navigation: NavigationExtras = {
       queryParams: {
@@ -100,5 +93,16 @@ export class VerCollectionsPage implements OnInit {
     };
 
     this.router.navigate(["home-note"], navigation);
+  }
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      cssClass: "my-custom-class",
+      header: header,
+      message: message,
+      buttons: ["OK"],
+    });
+
+    await alert.present();
+
   }
 }

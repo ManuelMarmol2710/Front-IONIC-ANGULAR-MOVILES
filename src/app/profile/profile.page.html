@@ -25,16 +25,25 @@
     <ion-input type="last_Name" [(ngModel)]="last_Name"></ion-input>
     <ion-note slot="helper">Actualizar Apellido</ion-note>
   </ion-item>
-
-  <ion-item fill="solid">
+  <ion-item>
     <ion-label>Contraseña</ion-label>
-    <ion-input type="Contraseña" value="password" [(ngModel)]="password"></ion-input>
-    <ion-note slot="helper">Actualizar Contraseña</ion-note>
+    <form [formGroup]="passwordForm">
+      <ion-input
+        formControlName="password"
+        type="password"
+        class="form-control"
+        [(ngModel)]="password"
+        placeholder=" Nueva contraseña"
+      ></ion-input>
+    
+    </form>
+
   </ion-item>
+ 
 
   <ion-list style="text-align: center">
     <ion-button (click)="Actu()">Actualizar <ion-icon slot="end" name='arrow-redo-circle'></ion-icon></ion-button>
-
+    <ion-button class="w3-panel w3-green" [disabled]="!passwordForm.valid" (click)="actuPassword()">Actualizar contraseña<ion-icon slot="end" name='close-circle'></ion-icon></ion-button>
     <ion-button color="danger" (click)="delete()">Borrar Usuario <ion-icon slot="end" name='close-circle'></ion-icon></ion-button>
   </ion-list>
 </ion-content>
