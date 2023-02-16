@@ -1,32 +1,47 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button (click)="atras()"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Editar Perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-item>
-  <ion-label position="floating">Email</ion-label>
-  <ion-input [(ngModel)]="data"  disabled></ion-input>
-  <ion-note slot="helper">Actualizar Email</ion-note>
-</ion-item>
 
 <ion-content>
-  <ion-item fill="solid">
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input type="name" [(ngModel)]="name"></ion-input>
-    <ion-note slot="helper">Actualizar Nombre</ion-note>
-  </ion-item>
 
-  <ion-item fill="solid">
-    <ion-label position="floating">Apellido</ion-label>
-    <ion-input type="last_Name" [(ngModel)]="last_Name"></ion-input>
-    <ion-note slot="helper">Actualizar Apellido</ion-note>
-  </ion-item>
+  <ion-grid class="grid1">
+
+    <ion-row class="row1">
+      <ion-col> 
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row2">
+      <ion-col> 
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-slide>
+    <div class="container-login">
+      <ion-grid>
+          <ion-row>
+              <ion-col>
+                  <h1>Editar Perfil</h1>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                  <ion-list>
+
   <ion-item>
-    <ion-label>Contraseña</ion-label>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input [(ngModel)]="data"  disabled></ion-input>
+  </ion-item>
+  <br/>
+  <ion-item fill="solid">
+    <ion-input placeholder="Nuevo nombre" type="name" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <br/>
+  <ion-item fill="solid">
+    <ion-input placeholder="Nuevo apellido" type="last_Name" [(ngModel)]="last_Name"></ion-input>
+  </ion-item>
+  <br/>
+  <ion-item>
     <form [formGroup]="passwordForm">
       <ion-input
         formControlName="password"
@@ -35,15 +50,32 @@
         [(ngModel)]="password"
         placeholder=" Nueva contraseña"
       ></ion-input>
-    
     </form>
-
   </ion-item>
- 
 
-  <ion-list style="text-align: center">
-    <ion-button (click)="Actu()">Actualizar <ion-icon slot="end" name='arrow-redo-circle'></ion-icon></ion-button>
-    <ion-button class="w3-panel w3-green" [disabled]="!passwordForm.valid" (click)="actuPassword()">Actualizar contraseña<ion-icon slot="end" name='close-circle'></ion-icon></ion-button>
-    <ion-button color="danger" (click)="delete()">Borrar Usuario <ion-icon slot="end" name='close-circle'></ion-icon></ion-button>
-  </ion-list>
+</ion-list>
+</ion-col>
+</ion-row>
+<ion-row>
+  <ion-col>
+    <ion-button fill="solid"
+    color="tertiary"
+    expand="full"
+    type="submit" (click)="Actu()">Actualizar <ion-icon slot="end" name='arrow-redo-circle'></ion-icon></ion-button>
+    <ion-button fill="solid"
+    color="tertiary"
+    expand="full"
+    type="submit" class="w3-panel w3-green" [disabled]="!passwordForm.valid" (click)="actuPassword()">Actualizar contraseña<ion-icon slot="end" name='arrow-redo-circle'></ion-icon></ion-button>
+    <ion-button fill="solid"
+    expand="full"
+    type="submit"color="danger" (click)="delete()">Borrar Usuario <ion-icon slot="end" name='close-circle'></ion-icon></ion-button>
+    <ion-button fill="solid"
+    expand="full"
+    type="submit"color="tertiary" (click)="atras()">Volver</ion-button>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</div>
+</ion-slide>
 </ion-content>
