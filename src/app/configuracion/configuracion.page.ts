@@ -24,13 +24,11 @@ export class ConfiguracionPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-
     this.route.queryParams.subscribe((params) => {
       if (params && params["email"]) {
         this.data = params["email"];
       }
     });
-
   }
 
   ngOnInit() {}
@@ -47,7 +45,7 @@ export class ConfiguracionPage implements OnInit {
 
   logout() {
     this.router.navigateByUrl("/signin");
-    console.log('Sesion cerrada.')
+    console.log("Sesion cerrada.");
   }
 
   edit() {

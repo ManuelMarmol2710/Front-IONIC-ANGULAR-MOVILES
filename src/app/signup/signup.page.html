@@ -1,54 +1,86 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button (click)="atras()"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Registrarse</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-item>
-  <ion-label>Nombre</ion-label>
-  <ion-input [(ngModel)]="name" placeholder="nombre"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label>Apellido</ion-label>
-  <ion-input [(ngModel)]="last_Name" placeholder="apellido"></ion-input>
-</ion-item>
 <ion-content>
-  <ion-item>
-    
-    <ion-label>Email</ion-label>
-    <form #loginForm="ngForm">
-      <ion-input
-        type="email"
-        name="email"
-        email
-        [(ngModel)]="email"
-        placeholder="ejemplo@gmail.com"
-      ></ion-input>
-    </form>
-  </ion-item>
+  <ion-grid class="grid1">
+    <ion-row class="row1">
+      <ion-col> </ion-col>
+    </ion-row>
 
-  <ion-item>
-    <ion-label>Contraseña</ion-label>
-    <form [formGroup]="passwordForm">
-      <ion-input
-        formControlName="password"
-        type="password"
-        class="form-control"
-        [(ngModel)]="password"
-        placeholder="contraseña"
-      ></ion-input>
-    </form>
-  </ion-item>
+    <ion-row class="row2">
+      <ion-col> </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-list style="text-align: center">
-    <ion-button
-      [disabled]="!loginForm.form.valid"
-      [disabled]="!passwordForm.valid"
-      (click)="Registrar()"
-      >Registrar</ion-button
-    >
-  </ion-list>
+  <ion-slide>
+    <div class="container-login">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h1>Registrarse</h1>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+
+              <ion-item>
+                <ion-input [(ngModel)]="name" placeholder="nombre"></ion-input>
+              </ion-item>
+              <br />
+              <ion-item>
+                <ion-input
+                  [(ngModel)]="last_Name"
+                  placeholder="apellido"
+                ></ion-input>
+              </ion-item>
+              <br />
+              <ion-item>
+                <form #loginForm="ngForm">
+                  <ion-input
+                    type="email"
+                    name="email"
+                    email
+                    [(ngModel)]="email"
+                    placeholder="ejemplo@gmail.com"
+                  ></ion-input>
+                </form>
+              </ion-item>
+              <br />
+              <ion-item>
+                <form [formGroup]="passwordForm">
+                  <ion-input
+                    formControlName="password"
+                    type="password"
+                    class="form-control"
+                    [(ngModel)]="password"
+                    placeholder="contraseña"
+                  ></ion-input>
+                </form>
+              </ion-item>
+              
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button
+              fill="solid"
+              color="tertiary"
+              expand="full"
+              type="submit"
+              [disabled]="!loginForm.form.valid"
+              [disabled]="!passwordForm.valid"
+              (click)="Registrar()"
+              >Registrar</ion-button
+            >
+            <ion-button
+              fill="solid"
+              color="tertiary"
+              expand="full"
+              type="submit"
+              (click)="atras()">
+            Volver</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-slide>
 </ion-content>
