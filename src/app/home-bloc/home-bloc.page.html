@@ -7,9 +7,8 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-item>
-    <ion-label>Titulo</ion-label>
-    <ion-input [(ngModel)]="title" value="53703" [disabled]="false"></ion-input>
+  <ion-item >
+    <ion-textarea placeholder="titulo" [autoGrow]="true" [(ngModel)]="title"value="53703" [disabled]="false"></ion-textarea>
   </ion-item>
 
   <ion-item>
@@ -32,12 +31,16 @@
   </ion-list>
 
   <ion-card *ngFor="let card of Notes; trackBy:trackItems">
-    <ion-card-header>
-      <ion-card-title routerLink="/editar-nota" [queryParams]="{sendNotes}">
-        {{ card.title}}
+    <ion-card-header color ="primary">
+      <ion-card-title >
+        {{card.title}}
       </ion-card-title>
+      <br/>
+      <ion-card-subtitle *ngIf="card.collections"> 
+        Coleccion: {{card.collections}} </ion-card-subtitle>
     </ion-card-header>
-    <ion-card-subtitle> </ion-card-subtitle>
-    <ion-card-content> {{ card.notes}} </ion-card-content>
+    <br/>
+    <ion-card-content> {{card.notes}} </ion-card-content>
+    <ion-button fill="clear" (click)="send()">Editar</ion-button>
   </ion-card>
 </ion-content>

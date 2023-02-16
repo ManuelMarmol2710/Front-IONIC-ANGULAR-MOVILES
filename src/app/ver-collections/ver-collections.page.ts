@@ -35,7 +35,7 @@ export class VerCollectionsPage implements OnInit {
       },
     };
     this.http
-      .get(`http://localhost:3000/collections/${this.data}/${this.collections}`)
+      .get(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/collections/${this.data}/${this.collections}`)
       .subscribe(
         (res) => {
           localStorage.setItem("blocNotes", JSON.stringify(res));
@@ -55,7 +55,7 @@ export class VerCollectionsPage implements OnInit {
       },
     };
     this.http
-      .get(`http://localhost:3000/collections/${this.data}/Favorito`)
+      .get(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/collections/${this.data}/Favorito`)
       .subscribe(
         (res) => {
           localStorage.setItem("blocNotes", JSON.stringify(res));
@@ -73,7 +73,7 @@ export class VerCollectionsPage implements OnInit {
 
 
   borrar(){
-    this.http.delete(`http://localhost:3000/collections/${this.data}/${this.collections}`).subscribe(
+    this.http.delete(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/collections/${this.data}/${this.collections}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         console.log(res);

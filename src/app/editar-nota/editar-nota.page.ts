@@ -28,11 +28,14 @@ export class EditarNotaPage implements OnInit {
   ) {
     this.route.queryParams.subscribe((params) => {
 
-      if (params && params.sendNotes) {
-        this.dataNota = params.sendNotes;
+      if (params && params["NotesSEND"]) {
+        this.dataNota = params["NotesSEND"];
       }
     });
+    console.log(this.dataNota)
   }
+  
+  
 
   ngOnInit() {}
 
@@ -48,7 +51,7 @@ export class EditarNotaPage implements OnInit {
       collections:this.collections
     };
     this.http
-      .post(`http://localhost:3000/note/${this.title}/${this.collections}`, cre)
+      .post(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.title}/${this.collections}`, cre)
       .subscribe(
         (res) => {
           localStorage.setItem("blocNotes", JSON.stringify(res));
@@ -62,7 +65,7 @@ export class EditarNotaPage implements OnInit {
   }
 
   delete() {
-    this.http.delete(`http://localhost:3000/note/${this.title}`).subscribe(
+    this.http.delete(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.title}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         console.log(res);
@@ -86,7 +89,7 @@ export class EditarNotaPage implements OnInit {
       },
     };
   this.http
-      .post(`http://localhost:3000/note/${this.title}/Favorito`, cre)
+      .post(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.title}/Favorito`, cre)
       .subscribe(
         (res) => {
           localStorage.setItem("blocNotes", JSON.stringify(res));
@@ -99,6 +102,10 @@ export class EditarNotaPage implements OnInit {
       );
 
 
+  }
+
+  trackItems(index: number, itemObject: any) {
+    return itemObject._id;
   }
   atras() {
     let navigation: NavigationExtras = {

@@ -12,10 +12,11 @@ export class HomeBlocPage implements OnInit {
   notes!: string;
   title!: string;
   owner!: string;
+  collections:string;
   data: any;
   Notes: any;
-  collections:string;
-sendNotes:string;
+  NotesSEND: any;
+  sendNotes:any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -30,7 +31,40 @@ sendNotes:string;
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    let navigation: NavigationExtras = {
+      queryParams: {
+        email: this.data,
+      },
+    };
+    this.http.get(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.data}`).subscribe(
+      (res) => {
+        localStorage.setItem("blocNotes", JSON.stringify(res));
+        this.Notes = res;
+      if (res != null) {
+          console.log(res);
+        } else {
+        
+        }
+
+        this.router.navigate(["home-bloc"], navigation);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+send(){
+
+  let navigation: NavigationExtras = {
+    queryParams: {
+ email: this.data
+    },
+  };      this.router.navigate(["editar-nota"], navigation);
+  
+
+}
 
   save() {
     let cre = {
@@ -42,7 +76,7 @@ sendNotes:string;
         email: this.data,
       },
     };
-    this.http.post(`http://localhost:3000/note/${this.data}`, cre).subscribe(
+    this.http.post(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.data}`, cre).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
 
@@ -64,14 +98,15 @@ sendNotes:string;
         email: this.data,
       },
     };
-    this.http.get(`http://localhost:3000/note/${this.data}`).subscribe(
+
+    this.http.get(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.data}`).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         this.Notes = res;
-     console.log(this.Notes);
+    
      
-        this.sendNotes = JSON.stringify(res) 
-        if (res != null) {
+    
+     if (res != null) {
           console.log(res);
         } else {
         

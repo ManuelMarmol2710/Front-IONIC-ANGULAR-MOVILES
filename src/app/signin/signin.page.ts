@@ -38,7 +38,7 @@ export class SigninPage implements OnInit {
       },
     };
 
-    this.http.post("http://localhost:3000/signin", cre).subscribe(
+    this.http.post("https://bloc-notas-ionic-angular-production-53dc.up.railway.app/signin", cre).subscribe(
       (res) => {
         localStorage.setItem("email", JSON.stringify(res));
         this.router.navigate(["home-note"], navigation);

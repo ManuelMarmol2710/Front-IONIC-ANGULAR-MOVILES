@@ -8,17 +8,12 @@
 </ion-header>
 
 <ion-content>
+
   <ion-item>
     <ion-label>Titulo</ion-label>
     <ion-input [(ngModel)]="title" value="53703" [disabled]="false"></ion-input>
-  </ion-item>
+    
 
-  <ion-item>
-    <ion-input
-      [(ngModel)]="notes"
-      [disabled]="false"
-      placeholder="nota"
-    ></ion-input>
   </ion-item>
 
   <ion-item>
@@ -29,7 +24,7 @@
    ></ion-input>
   </ion-item>
 
-  
+
   <br />
   <ion-list style="text-align: center">
     <ion-button (click)="save()"
@@ -43,10 +38,3 @@
     </ion-button>
     </ion-list>
  
- <ion-card *ngFor="let card of dataNota | keyvalue">
-    <ion-card-header>
-      <ion-card-title> {{ card.value | json}} </ion-card-title>
-    </ion-card-header>
-    <ion-card-content> </ion-card-content>
-  </ion-card>
-</ion-content>

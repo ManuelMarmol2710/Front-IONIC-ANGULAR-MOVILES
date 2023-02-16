@@ -60,7 +60,7 @@ export class SignupPage implements OnInit {
       },
     };
 
-    this.http.post("http://localhost:3000/signup", cre).subscribe(
+    this.http.post("https://bloc-notas-ionic-angular-production-53dc.up.railway.app/signup", cre).subscribe(
       (res) => {
         localStorage.setItem("User", JSON.stringify(res));
         this.router.navigate(["home-note"], navigation);

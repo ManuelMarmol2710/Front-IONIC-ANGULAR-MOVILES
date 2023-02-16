@@ -52,7 +52,7 @@ export class DeleteprofilePage implements OnInit {
 
   delete() {
 
-      this.http.delete(`http://localhost:3000/signup/${this.data} `).subscribe(
+      this.http.delete(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/signup/${this.data} `).subscribe(
         (res) => {
           localStorage.setItem("blocNotes", JSON.stringify(res));
           this.router.navigateByUrl("/signin");

@@ -16,21 +16,23 @@
   <ion-button class="ion text-center "(click)="borrar()" color="danger" >Borrar Coleccion <ion-icon slot="end" name='close-circle'></ion-icon></ion-button>
 <ion-content>
 
-  <ion-card *ngFor="let card of collect; trackBy:trackItems">
-    <ion-card-header>
-      <ion-card-title routerLink="/editar-nota" [queryParams]="{}">
-        Coleccion:{{ card.collections}}
-       
-      </ion-card-title>
+  <br/>
+  <br/>
 
-      <ion-card-title >
-        {{ card.title}}
+  <ion-card *ngFor="let card of collect; trackBy:trackItems">
+    <ion-card-header color="primary">
+
+      <ion-card-title>
+        {{card.title}}
       </ion-card-title>
+      <br/>
+      <ion-card-subtitle *ngIf="card.collections">
+        Coleccion: {{card.collections}}
+      </ion-card-subtitle>
     </ion-card-header>
-    <ion-card-subtitle>
-    </ion-card-subtitle>
+    <br/>
     <ion-card-content>
-      {{ card.notes}}
+      {{card.notes}}
     </ion-card-content>
   </ion-card>
 </ion-content>

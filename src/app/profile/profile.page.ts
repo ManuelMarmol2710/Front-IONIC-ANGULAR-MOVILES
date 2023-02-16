@@ -60,7 +60,7 @@ let navigation: NavigationExtras = {
         email: this.data,
       },
     };
-    this.http.put(`http://localhost:3000/signup/${this.data}`, cre).subscribe(
+    this.http.put(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/signup/${this.data}`, cre).subscribe(
       (res) => {
         localStorage.setItem("blocNotes", JSON.stringify(res));
         this.router.navigate(["home-note"], navigation);
@@ -90,7 +90,7 @@ actuPassword(){
       email: this.data,
     },
   };
-  this.http.put(`http://localhost:3000/signup/password/${this.data}`, cre).subscribe(
+  this.http.put(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/signup/password/${this.data}`, cre).subscribe(
     (res) => {
       localStorage.setItem("blocNotes", JSON.stringify(res));
       this.router.navigate(["home-note"], navigation);
