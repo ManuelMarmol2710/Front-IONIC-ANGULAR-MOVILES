@@ -1,38 +1,69 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Iniciar sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-item>
-    <ion-label>Email</ion-label>
-    <ion-input [(ngModel)]="email" email placeholder="ejemplo@gmail.com"></ion-input>
-  </ion-item>
+  <ion-grid class="grid1">
 
-  <ion-item>
-    <ion-label floating>Contraseña</ion-label>
+    <ion-row class="row1">
+      <ion-col> 
 
-    <ion-input
-      clearOnEdit="false"
-      [type]="passwordType"
-      [(ngModel)]="password"
-      placeholder="contraseña"
-    ></ion-input>
+      </ion-col>
+    </ion-row>
 
-    <ion-icon
-      slot="end"
-      [name]="passwordIcon"
-      class="passwordIcon"
-      (click)="hideShowPassword()"
-    ></ion-icon>
-  </ion-item>
+    <ion-row class="row2">
+      <ion-col> 
 
-  <ion-list style="text-align: center">
-    <ion-button class="ion text-center" (click)="login()">Login</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-    <p class="ion text-center">
-      No tienes una cuenta? <strong routerLink="/signup">Registrate</strong>
-    </p>
-  </ion-list>
+  <ion-slide>
+    <div class="container-login">
+      <ion-grid>
+          <ion-row>
+              <ion-col>
+                  <h1>Iniciar sesión</h1>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                  <ion-list>
+
+                    <ion-item>
+                      <ion-icon slot="end" name="person" class="icon-login"></ion-icon>
+                      <ion-input
+                        [(ngModel)]="email"
+                        email
+                        placeholder="ejemplo@gmail.com"
+                      ></ion-input>
+                    </ion-item>
+                    <br/>
+                    <ion-item>
+                      <ion-icon
+                        slot="end"
+                        [name]="passwordIcon"
+                        class="passwordIcon"
+                        (click)="hideShowPassword()"
+                      ></ion-icon>
+                      <ion-input
+                        clearOnEdit="false"
+                        [type]="passwordType"
+                        [(ngModel)]="password"
+                        placeholder="contraseña">
+                      </ion-input>
+                    </ion-item>
+
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <ion-button fill="solid" color="tertiary" expand="full" type="submit" class="ion text-center" (click)="login()">Login</ion-button>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col>
+                          <h3> No tienes una cuenta? <strong routerLink="/signup">Registrate</strong></h3>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+  </ion-slide>
 </ion-content>

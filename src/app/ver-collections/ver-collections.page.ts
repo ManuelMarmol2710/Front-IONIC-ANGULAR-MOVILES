@@ -11,7 +11,8 @@ import { AlertController } from "@ionic/angular";
 export class VerCollectionsPage implements OnInit {
   data: any;
   collections!: string;
-  collect!: any;
+  collect: any;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -67,6 +68,7 @@ export class VerCollectionsPage implements OnInit {
         }
       );
   }
+
   trackItems(index: number, itemObject: any) {
     return itemObject._id;
   }

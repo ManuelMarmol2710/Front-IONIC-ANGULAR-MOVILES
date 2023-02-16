@@ -12,11 +12,11 @@ export class HomeBlocPage implements OnInit {
   notes!: string;
   title!: string;
   owner!: string;
-  collections:string;
+  collections: string;
   data: any;
   Notes: any;
   NotesSEND: any;
-  sendNotes:any;
+  sendNotes: any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -24,7 +24,6 @@ export class HomeBlocPage implements OnInit {
     private route: ActivatedRoute
   ) {
     this.route.queryParams.subscribe((params) => {
-
       if (params && params["email"]) {
         this.data = params["email"];
       }
@@ -37,34 +36,35 @@ export class HomeBlocPage implements OnInit {
         email: this.data,
       },
     };
-    this.http.get(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.data}`).subscribe(
-      (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
-        this.Notes = res;
-      if (res != null) {
-          console.log(res);
-        } else {
-        
-        }
+    this.http
+      .get(
+        `https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.data}`
+      )
+      .subscribe(
+        (res) => {
+          localStorage.setItem("blocNotes", JSON.stringify(res));
+          this.Notes = res;
+          if (res != null) {
+            console.log(res);
+          } else {
+          }
 
-        this.router.navigate(["home-bloc"], navigation);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+          this.router.navigate(["home-bloc"], navigation);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
-send(){
-
-  let navigation: NavigationExtras = {
-    queryParams: {
- email: this.data
-    },
-  };      this.router.navigate(["editar-nota"], navigation);
-  
-
-}
+  send() {
+    let navigation: NavigationExtras = {
+      queryParams: {
+        email: this.data,
+      },
+    };
+    this.router.navigate(["editar-nota"], navigation);
+  }
 
   save() {
     let cre = {
@@ -76,17 +76,22 @@ send(){
         email: this.data,
       },
     };
-    this.http.post(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.data}`, cre).subscribe(
-      (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
+    this.http
+      .post(
+        `https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.data}`,
+        cre
+      )
+      .subscribe(
+        (res) => {
+          localStorage.setItem("blocNotes", JSON.stringify(res));
 
-        this.router.navigate(["home-bloc"], navigation);
-      },
-      (error) => {
-        console.log(error);
-        this.presentAlert("Campo de titulo o nota vacio.", error.error.msg);
-      }
-    );
+          this.router.navigate(["home-bloc"], navigation);
+        },
+        (error) => {
+          console.log(error);
+          this.presentAlert("Campo de titulo o nota vacio.", error.error.msg);
+        }
+      );
 
     this.title = "";
     this.notes = "";
@@ -99,25 +104,26 @@ send(){
       },
     };
 
-    this.http.get(`https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.data}`).subscribe(
-      (res) => {
-        localStorage.setItem("blocNotes", JSON.stringify(res));
-        this.Notes = res;
-    
-     
-    
-     if (res != null) {
-          console.log(res);
-        } else {
-        
-        }
+    this.http
+      .get(
+        `https://bloc-notas-ionic-angular-production-53dc.up.railway.app/note/${this.data}`
+      )
+      .subscribe(
+        (res) => {
+          localStorage.setItem("blocNotes", JSON.stringify(res));
+          this.Notes = res;
 
-        this.router.navigate(["home-bloc"], navigation);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+          if (res != null) {
+            console.log(res);
+          } else {
+          }
+
+          this.router.navigate(["home-bloc"], navigation);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
   trackItems(index: number, itemObject: any) {
     return itemObject._id;
@@ -131,7 +137,7 @@ send(){
     this.router.navigate(["home-note"], navigation);
   }
 
-  async presentAlert(header: string, message:string) {
+  async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       cssClass: "my-custom-class",
       header: header,
@@ -140,6 +146,5 @@ send(){
     });
 
     await alert.present();
-
   }
 }
